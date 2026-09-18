@@ -79,9 +79,12 @@ ROUTING_CASES = [
     ("audit keyboard focus contrast and missing UI states", {"accessibility", "bosskuai-ui-ux-design-to-code"}),
     ("fix mobile overflow responsive reflow and small tap targets", {"antislop-layoutmobile", "accessibility", "bosskuai-ui-ux-design-to-code"}),
     ("use Headroom to compress this huge tool output and retrieve the original", {"bosskuai-headroom"}),
+    ("extract tables from this PDF to JSON with opendataloader-pdf", {"odl-pdf"}),
+    ("OCR this scanned PDF with ODL and verify the extracted text", {"odl-pdf"}),
+    ("build a PDF RAG pipeline with page and bounding box citations", {"odl-pdf"}),
 ]
 
-NEW_SKILL_ROUTING_CASES = ROUTING_CASES[-6:]
+NEW_SKILL_ROUTING_CASES = ROUTING_CASES[-9:]
 
 
 class TokenizerTests(unittest.TestCase):
@@ -181,6 +184,21 @@ class RoutingTests(unittest.TestCase):
         # "design tokens" must not route to token-saver just because it says "token".
         top = [sid for sid, _ in rank_skills("add dark mode to the design tokens", ROOT, limit=3)]
         self.assertIn("bosskuai-design-systems", top)
+
+    def test_generic_document_conversion_stays_with_markitdown(self):
+        self.assertEqual(find_skill("convert this DOCX or PDF to markdown", ROOT)[0], "markitdown")
+        stack = {
+            sid
+            for sid, _ in recommend_skill_stack(
+                "convert this DOCX or PDF to markdown",
+                ROOT,
+            )
+        }
+        self.assertNotIn("odl-pdf", stack)
+
+    def test_unrelated_pdf_operations_do_not_route_to_odl(self):
+        top = {sid for sid, _ in rank_skills("merge split and rotate these PDF pages", ROOT, limit=3)}
+        self.assertNotIn("odl-pdf", top)
 
     def test_unmatched_query_falls_back_without_crashing(self):
         sid, score = find_skill("zzzz qqqq vvvv", ROOT)

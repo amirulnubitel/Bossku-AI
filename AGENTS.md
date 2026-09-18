@@ -89,6 +89,7 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | Mixed-media corpus → knowledge graph (docs, papers, video, Neo4j/Obsidian export) | `graphify` (requires `graphifyy` CLI) |
 | Browser automation agent | `browser-use` (prefer over `bosskuai-browser-automation` when installed) |
 | Office/PDF/HTML → Markdown | `markitdown` (requires `markitdown[all]` pip package) |
+| Structured PDF extraction, scanned OCR, tables, bounding boxes, or citation-ready RAG | `odl-pdf` (OpenDataLoader runtime installed separately; use `markitdown` for generic conversion) |
 | Agent loops: CI/PR/issue sweeps, budgeted triage | loop-engineering — `loop-triage`, `loop-verifier`, `minimal-fix` (+ pattern skills: `ci-triage`, `pr-review-triage`, etc.) |
 | Scroll-scrub fly-through / diorama cinematic landing | `scroll-world` (Higgsfield + portable scrub engine; not generic GSAP-only heroes) |
 | Agent shell/git safety / destructive command hooks | `dcg` (Destructive Command Guard; install upstream binary separately) |

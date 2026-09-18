@@ -105,6 +105,7 @@ class InstallTests(unittest.TestCase):
                 "antislop",
                 "antislop-ui",
                 "bosskuai-headroom",
+                "odl-pdf",
             ):
                 self.assertTrue((agents / sid).is_dir(), msg=f"missing {sid}")
             uninstall_user(root=ROOT, home=home)
@@ -146,6 +147,7 @@ class VendoredTests(unittest.TestCase):
         self.assertIn("hallmark", ids)
         self.assertIn("antislop", ids)
         self.assertIn("antislop-ui", ids)
+        self.assertIn("odl-pdf", ids)
         self.assertGreaterEqual(len(ids), 68)
 
     def test_managed_vendored_skill_name(self):

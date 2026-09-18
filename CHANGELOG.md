@@ -41,6 +41,7 @@ Synced every vendored pack that has a checkout under `../ai-skills` against upst
 
 ## Unreleased
 
+- Added the complete Apache-2.0 upstream `odl-pdf` skill bundle unchanged, with prompt-aware routing for OpenDataLoader, OCR, structured PDF extraction, tables, bounding boxes, and citation-ready RAG. Generic document conversion remains routed to `markitdown`; unrelated PDF operations do not trigger the skill.
 - Added the six-skill MIT `anti-slop` pack unchanged, plus curated prompt routing and a final-gate contract for UI, responsive layout, copy, generated comments, and code artifacts.
 - Added `bosskuai-headroom` as a guarded context-compression operating skill. It checks for the optional runtime and never installs packages or changes proxy/provider routing without a request.
 - `bossku skills find` now emits a `recommended_stack` so multi-concern prompts can select one primary and the smallest non-overlapping complementary set. Superpowers phase skills are explicitly composed with domain and Anti-Slop skills.

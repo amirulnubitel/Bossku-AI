@@ -347,6 +347,9 @@ def _score_entry(
     trigger_words = {w for t in triggers for w in tokenize(t)}
     keywords = set(entry.get("keywords", []))
 
+    if any(_contains(task_l, phrase) for phrase in entry.get("exclusions", [])):
+        return 0.0
+
     # How much of the query's information mass does this skill account for?
     matched = 0.0
     for weight, forms in q_terms.values():
@@ -387,6 +390,7 @@ def write_routing_cache(dest: Path, root: Path | None = None) -> None:
                 "name": entry.get("name", sid),
                 "description": entry.get("description", ""),
                 "triggers": entry.get("triggers", []),
+                "exclusions": entry.get("exclusions", []),
                 "keywords": entry.get("keywords", []),
                 "model_role": entry.get("model_role", "coder"),
                 "pack": entry.get("pack", "bossku"),

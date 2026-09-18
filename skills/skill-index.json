@@ -1,7 +1,7 @@
 {
   "version": "2.1.0",
-  "fingerprint": "99ac36094949a865",
-  "count": 238,
+  "fingerprint": "38d63fe558eb2ee0",
+  "count": 239,
   "aliases": {
     "bosskuai-caveman": "bosskuai-token-saver",
     "bosskuai-root-cause-investigation": "bosskuai-diagnose-loop",
@@ -26,6 +26,7 @@
         "which version wins",
         "statistical significance"
       ],
+      "exclusions": [],
       "phrases": [
         "experiment",
         "test this change",
@@ -140,6 +141,7 @@
         "accessible form",
         "axe"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "auditing ui that must meet wcag 2"
@@ -216,6 +218,7 @@
       "triggers": [
         "ad creative"
       ],
+      "exclusions": [],
       "phrases": [
         "ad copy variations",
         "generate headlines",
@@ -330,6 +333,7 @@
       "triggers": [
         "ads"
       ],
+      "exclusions": [],
       "phrases": [
         "ppc",
         "paid media",
@@ -440,6 +444,7 @@
       "triggers": [
         "ai seo"
       ],
+      "exclusions": [],
       "phrases": [
         "aeo",
         "geo",
@@ -553,6 +558,7 @@
         "utm",
         "gtm container"
       ],
+      "exclusions": [],
       "phrases": [
         "set up tracking",
         "conversion tracking",
@@ -657,6 +663,7 @@
         "make a transition",
         "component feel alive"
       ],
+      "exclusions": [],
       "phrases": [
         "asked to animate something",
         "add motion",
@@ -735,6 +742,7 @@
         "press feedback",
         "haptics"
       ],
+      "exclusions": [],
       "phrases": [
         "animating anything in an expo app",
         "adding gestures",
@@ -817,6 +825,7 @@
         "name for this effect",
         "what is this animation called"
       ],
+      "exclusions": [],
       "phrases": [
         "the bouncy thing when a popover opens",
         "the ios rubber-band scroll",
@@ -902,6 +911,7 @@
         "delivery gate",
         "quality gate"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "antislop",
@@ -980,6 +990,7 @@
         "verbose code",
         "generated code cleanup"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "antislop",
@@ -1047,6 +1058,7 @@
         "rewrite naturally",
         "marketing copy cleanup"
       ],
+      "exclusions": [],
       "phrases": [
         "writing",
         "editing prose: headlines",
@@ -1131,6 +1143,7 @@
         "humanize code comments",
         "comment cleanup"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "antislop",
@@ -1196,6 +1209,7 @@
         "horizontal scroll",
         "mobile audit"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "antislop",
@@ -1274,6 +1288,7 @@
         "distinctive interface",
         "template looking ui"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "editing any interface: color",
@@ -1359,6 +1374,7 @@
         "fluid interface",
         "rubber band scroll"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "reviewing gesture-driven ui",
@@ -1453,6 +1469,7 @@
         "adr log",
         "write an adr"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "architecture",
@@ -1528,6 +1545,7 @@
         "toast dark mode",
         "promise toast"
       ],
+      "exclusions": [],
       "phrases": [
         "working with sonner",
         "troubleshooting it — toasts that don't appear",
@@ -1594,6 +1612,7 @@
       "triggers": [
         "aso"
       ],
+      "exclusions": [],
       "phrases": [
         "aso audit",
         "app store optimization",
@@ -1694,6 +1713,7 @@
         "3d scene",
         "shader"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "3d",
@@ -1772,6 +1792,7 @@
         "agent quality",
         "why is my agent"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "agent",
@@ -1844,6 +1865,7 @@
         "empty result",
         "agent stuck"
       ],
+      "exclusions": [],
       "phrases": [
         "an agent run loops",
         "burns tokens",
@@ -1911,6 +1933,7 @@
         "model pricing",
         "context window"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "ai",
@@ -1972,6 +1995,7 @@
         "kpi",
         "instrumentation"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "analytics",
@@ -2036,6 +2060,7 @@
         "pagination",
         "idempotency"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "api",
@@ -2080,6 +2105,7 @@
         "hard to test",
         "consolidate modules"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "architecture",
@@ -2127,6 +2153,7 @@
         "loop architecture",
         "multi step pipeline"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "autonomous",
@@ -2224,6 +2251,7 @@
         "ecr",
         "ap-southeast-5"
       ],
+      "exclusions": [],
       "phrases": [
         "deploying",
         "operating on aws across ecs",
@@ -2308,6 +2336,7 @@
         "headless browser",
         "e2e test"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "browser",
@@ -2376,6 +2405,7 @@
         "edge cases",
         "business rules"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "business",
@@ -2439,6 +2469,7 @@
         "flaky ci",
         "actionlint"
       ],
+      "exclusions": [],
       "phrases": [
         "designing",
         "speeding up",
@@ -2528,6 +2559,7 @@
         "hooks",
         "slash commands"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "claude",
@@ -2576,6 +2608,7 @@
         "rules file",
         "agent instructions"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "claude",
@@ -2631,6 +2664,7 @@
         "tech debt",
         "restructure"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "code",
@@ -2691,6 +2725,7 @@
         "side effects",
         "where is this called"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "codebase",
@@ -2749,6 +2784,7 @@
         "error handling",
         "maintainability"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "coding",
@@ -2803,6 +2839,7 @@
         "competitive analysis",
         "what are they shipping"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "competitor",
@@ -2858,6 +2895,7 @@
         "posting schedule",
         "editorial calendar"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "content",
@@ -2900,6 +2938,7 @@
         "token bloat",
         "trim context"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "context",
@@ -2949,6 +2988,7 @@
         "compact",
         "out of tokens"
       ],
+      "exclusions": [],
       "phrases": [
         "context",
         "token"
@@ -3014,6 +3054,7 @@
         "what did we learn",
         "post task learning"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "continuous",
@@ -3070,6 +3111,7 @@
         "token budget",
         "unit economics"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "cost",
@@ -3122,6 +3164,7 @@
         "go or no go",
         "multiple perspectives"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "council",
@@ -3194,6 +3237,7 @@
         "escalate to another model",
         "try a different model"
       ],
+      "exclusions": [],
       "phrases": [
         "the current model is stuck",
         "low-confidence",
@@ -3273,6 +3317,7 @@
         "vendor strategy",
         "ai strategy"
       ],
+      "exclusions": [],
       "phrases": [
         "acting as a cto on technology strategy",
         "roadmaps",
@@ -3359,6 +3404,7 @@
         "survey design",
         "personas"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "customer",
@@ -3410,6 +3456,7 @@
         "sla",
         "time to first value"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "customer",
@@ -3457,6 +3504,7 @@
         "skill-index",
         "bossku config"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "customize",
@@ -3513,6 +3561,7 @@
         "is this secure",
         "pentest"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "cybersecurity",
@@ -3591,6 +3640,7 @@
         "entity ownership",
         "retention policy"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "data",
@@ -3642,6 +3692,7 @@
         "slow query",
         "normalize"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "database",
@@ -3712,6 +3763,7 @@
         "with citations",
         "investigate"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "deep",
@@ -3770,6 +3822,7 @@
         "component library",
         "design.md"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "design",
@@ -3821,6 +3874,7 @@
         "rollback",
         "environment promotion"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "devops",
@@ -3898,6 +3952,7 @@
         "why is this",
         "reproduce"
       ],
+      "exclusions": [],
       "phrases": [
         "diagnose/debug this",
         "diagnose",
@@ -3968,6 +4023,7 @@
         "docker compose",
         "containerize"
       ],
+      "exclusions": [],
       "phrases": [
         "docker compose up -d"
       ],
@@ -4024,6 +4080,7 @@
         "context7",
         "look up the docs"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "documentation",
@@ -4078,6 +4135,7 @@
         "delivery plan",
         "ready to hand off"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "engineering",
@@ -4136,6 +4194,7 @@
         "engineering principles",
         "why do we do it this way"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "engineering",
@@ -4181,6 +4240,7 @@
         "regression harness",
         "scorecard"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "eval",
@@ -4250,6 +4310,7 @@
         "app.json",
         "eas.json"
       ],
+      "exclusions": [],
       "phrases": [
         "building react native",
         "expo apps with expo router",
@@ -4335,6 +4396,7 @@
         "financial model",
         "revenue model"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "financial",
@@ -4402,6 +4464,7 @@
         "repo settings",
         "branch protection"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "github",
@@ -4468,6 +4531,7 @@
         "go module",
         "go.mod"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "reviewing go backends",
@@ -4549,6 +4613,7 @@
         "greptile review loop",
         "greptile"
       ],
+      "exclusions": [],
       "phrases": [
         "iteratively improving a github pr",
         "gitlab mr",
@@ -4600,6 +4665,7 @@
         "verify against docs",
         "check my understanding"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "grill",
@@ -4651,6 +4717,7 @@
         "test this channel",
         "activation experiment"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "growth",
@@ -4717,6 +4784,7 @@
         "scroll storytelling",
         "gsap timeline"
       ],
+      "exclusions": [],
       "phrases": [
         "responsive matchmedia",
         "react usegsap",
@@ -4783,6 +4851,7 @@
         "handoff doc",
         "write a handoff"
       ],
+      "exclusions": [],
       "phrases": [
         "the user asks to hand off",
         "wrap up for another agent",
@@ -4840,6 +4909,7 @@
         "headroom savings",
         "large tool output"
       ],
+      "exclusions": [],
       "phrases": [
         "large tool outputs",
         "logs",
@@ -4912,6 +4982,7 @@
         "rebuild the server",
         "litespeed"
       ],
+      "exclusions": [],
       "phrases": [
         "deploying",
         "hardening",
@@ -4999,6 +5070,7 @@
         "less robotic",
         "rewrite naturally"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "human",
@@ -5044,6 +5116,7 @@
         "hyperframes",
         "frame animation"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "hyperframes",
@@ -5096,6 +5169,7 @@
         "malay",
         "chinese"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "i18n",
@@ -5153,6 +5227,7 @@
         "on-call",
         "paging"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "incident",
@@ -5219,6 +5294,7 @@
         "fixtures",
         "mocking strategy"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "integration",
@@ -5264,6 +5340,7 @@
         "due diligence",
         "data room"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "investor",
@@ -5315,6 +5392,7 @@
         "artisan",
         "blade"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "laravel",
@@ -5360,6 +5438,7 @@
         "harden",
         "vulnerability"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "laravel",
@@ -5433,6 +5512,7 @@
         "pest",
         "phpunit"
       ],
+      "exclusions": [],
       "phrases": [
         "writing",
         "testing laravel features test-first"
@@ -5491,6 +5571,7 @@
         "verify laravel",
         "laravel check"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "laravel",
@@ -5542,6 +5623,7 @@
         "go live",
         "commercialize"
       ],
+      "exclusions": [],
       "phrases": [
         "marketing",
         "sales",
@@ -5599,6 +5681,7 @@
         "warm intro",
         "qualify leads"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "lead",
@@ -5654,6 +5737,7 @@
         "privacy policy",
         "compliance"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "legal",
@@ -5700,6 +5784,7 @@
         "smooth scroll",
         "scroll sync"
       ],
+      "exclusions": [],
       "phrases": [
         "sync",
         "anchors",
@@ -5767,6 +5852,7 @@
         "personal data protection",
         "malaysia privacy"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "malaysia",
@@ -5813,6 +5899,7 @@
         "demand validation",
         "market research"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "market",
@@ -5857,6 +5944,7 @@
         "positioning",
         "growth loops"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "marketing",
@@ -5935,6 +6023,7 @@
         "build number",
         "ota update"
       ],
+      "exclusions": [],
       "phrases": [
         "including signing",
         "play tracks",
@@ -6013,6 +6102,7 @@
         "aggregation pipeline",
         "document store"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "mongodb",
@@ -6089,6 +6179,7 @@
         "nitro",
         "vue app"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "nuxt",
@@ -6149,6 +6240,7 @@
         "uptime monitoring",
         "health checks"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "observability",
@@ -6204,6 +6296,7 @@
         "capacity planning",
         "sop"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "operations",
@@ -6260,6 +6353,7 @@
         "paid acquisition",
         "monetization"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "paid",
@@ -6320,6 +6414,7 @@
         "memory leak",
         "high cpu"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "performance",
@@ -6381,6 +6476,7 @@
         "obsidian export",
         "bossku sync"
       ],
+      "exclusions": [],
       "phrases": [
         "the task touches bosskuai project memory ("
       ],
@@ -6443,6 +6539,7 @@
         "delivery plan",
         "who owns what"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "planning",
@@ -6501,6 +6598,7 @@
         "language tradeoff",
         "ecosystem choice"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "polyglot",
@@ -6550,6 +6648,7 @@
         "minimal code",
         "over-engineered"
       ],
+      "exclusions": [],
       "phrases": [
         "the user asks for ponytail",
         "lazy mode",
@@ -6604,6 +6703,7 @@
         "pr review",
         "review my changes"
       ],
+      "exclusions": [],
       "phrases": [
         "checking",
         "preparing a github pr",
@@ -6676,6 +6776,7 @@
         "prioritize",
         "product direction"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "product",
@@ -6724,6 +6825,7 @@
         "what is this project",
         "get up to speed"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "project",
@@ -6777,6 +6879,7 @@
         "malicious instructions in a file",
         "instructions inside fetched content"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "prompt",
@@ -6835,6 +6938,7 @@
         "rewrite the prompt",
         "system prompt"
       ],
+      "exclusions": [],
       "phrases": [
         "the user asks to optimize",
         "improve",
@@ -6914,6 +7018,7 @@
         "test pyramid",
         "coverage"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "qa",
@@ -6969,6 +7074,7 @@
         "hackathon prototype",
         "poc scaffold"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "rapid",
@@ -7033,6 +7139,7 @@
         "incremental tightening",
         "no backsliding"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "ratchet",
@@ -7099,6 +7206,7 @@
         "stale closure",
         "strict mode double"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "auditing react",
@@ -7186,6 +7294,7 @@
         "recipe",
         "how do i do x with bossku"
       ],
+      "exclusions": [],
       "phrases": [
         "authoring",
         "validating",
@@ -7245,6 +7354,7 @@
         "rate limit",
         "job backlog"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "redis",
@@ -7291,6 +7401,7 @@
         "review this pull request",
         "critique this implementation"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "rigorous",
@@ -7342,6 +7453,7 @@
         "extract principles",
         "consolidate guidance"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "rules",
@@ -7396,6 +7508,7 @@
         "stripe webhook",
         "billing"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "saas",
@@ -7450,6 +7563,7 @@
         "objection handling",
         "founder led sales"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "sales",
@@ -7499,6 +7613,7 @@
         "existing package",
         "reinvent"
       ],
+      "exclusions": [],
       "phrases": [
         "deciding whether to adopt an existing package",
         "service",
@@ -7556,6 +7671,7 @@
         "answer engine",
         "discoverability"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "seo",
@@ -7633,6 +7749,7 @@
         "skill description",
         "skill frontmatter"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "skill",
@@ -7698,6 +7815,7 @@
         "stocktake",
         "which skills are stale"
       ],
+      "exclusions": [],
       "phrases": [
         "prompt-weight bloat"
       ],
@@ -7745,6 +7863,7 @@
         "structural refactor",
         "monolith or services"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "software",
@@ -7803,6 +7922,7 @@
         "spawn agents",
         "fan out"
       ],
+      "exclusions": [],
       "phrases": [
         "cursor (parallel tabs)",
         "codex (parallel runs)"
@@ -7858,6 +7978,7 @@
         "design direction",
         "anti-slop"
       ],
+      "exclusions": [],
       "phrases": [
         "creating",
         "redesigning landing pages",
@@ -7927,6 +8048,7 @@
         "red green refactor",
         "write tests before"
       ],
+      "exclusions": [],
       "phrases": [
         "red-green-refactor",
         "user wants to build features",
@@ -8006,6 +8128,7 @@
         "retro",
         "postmortem process"
       ],
+      "exclusions": [],
       "phrases": [
         "acting as a tech lead",
         "engineering manager on delivery",
@@ -8102,6 +8225,7 @@
         "sees another customer's data",
         "workspace isolation"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "tenant",
@@ -8157,6 +8281,7 @@
         "one-question prototype",
         "spike to learn"
       ],
+      "exclusions": [],
       "phrases": [
         "prototype this",
         "try a few designs",
@@ -8207,6 +8332,7 @@
         "reduce tokens",
         "cheaper session"
       ],
+      "exclusions": [],
       "phrases": [
         "the user explicitly asks for terse output",
         "lower token use",
@@ -8259,6 +8385,7 @@
         "responsive",
         "design to code"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "ui",
@@ -8322,6 +8449,7 @@
         "nginx",
         "self host"
       ],
+      "exclusions": [],
       "phrases": [
         "deploying docker workloads to a vps",
         "including hardening",
@@ -8413,6 +8541,7 @@
         "crux",
         "rum"
       ],
+      "exclusions": [],
       "phrases": [
         "diagnosing",
         "improving web performance",
@@ -8501,6 +8630,7 @@
         "across projects",
         "what am i working on"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "workspace",
@@ -8545,6 +8675,7 @@
         "explore options",
         "come up with"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "brainstorming",
@@ -8592,6 +8723,7 @@
       "triggers": [
         "brandkit"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "brandkit",
@@ -8665,6 +8797,7 @@
       "triggers": [
         "browser use"
       ],
+      "exclusions": [],
       "phrases": [
         "the user needs to navigate websites",
         "interact with web pages",
@@ -8734,6 +8867,7 @@
       "triggers": [
         "brutalist skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "brutalist",
@@ -8812,6 +8946,7 @@
         "changelog drafter",
         "release prep"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "changelog",
@@ -8848,6 +8983,7 @@
         "downgrade",
         "users are leaving"
       ],
+      "exclusions": [],
       "phrases": [
         "cancel flow",
         "offboarding",
@@ -8965,6 +9101,7 @@
         "tests failing in ci",
         "red pipeline"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "ci",
@@ -9013,6 +9150,7 @@
       "triggers": [
         "cloud"
       ],
+      "exclusions": [],
       "phrases": [
         "for questions about n8n",
         "make",
@@ -9094,6 +9232,7 @@
       "triggers": [
         "co marketing"
       ],
+      "exclusions": [],
       "phrases": [
         "co-marketing",
         "partner marketing",
@@ -9188,6 +9327,7 @@
         "what should i do next",
         "advise me"
       ],
+      "exclusions": [],
       "phrases": [
         "engineering",
         "security",
@@ -9251,6 +9391,7 @@
         "outbound email",
         "email prospects"
       ],
+      "exclusions": [],
       "phrases": [
         "cold outreach",
         "prospecting email",
@@ -9345,6 +9486,7 @@
       "triggers": [
         "community marketing"
       ],
+      "exclusions": [],
       "phrases": [
         "build a community,\\",
         "community strategy,\\",
@@ -9448,6 +9590,7 @@
       "triggers": [
         "competitor profiling"
       ],
+      "exclusions": [],
       "phrases": [
         "competitor profile",
         "competitor research",
@@ -9542,6 +9685,7 @@
       "triggers": [
         "competitors"
       ],
+      "exclusions": [],
       "phrases": [
         "alternative page",
         "vs page",
@@ -9634,6 +9778,7 @@
       "triggers": [
         "content strategy"
       ],
+      "exclusions": [],
       "phrases": [
         "what should i write about",
         "content ideas",
@@ -9730,6 +9875,7 @@
       "triggers": [
         "copy editing"
       ],
+      "exclusions": [],
       "phrases": [
         "edit this copy",
         "review my copy",
@@ -9833,6 +9979,7 @@
       "triggers": [
         "copywriting"
       ],
+      "exclusions": [],
       "phrases": [
         "write copy for",
         "improve this copy",
@@ -9933,6 +10080,7 @@
       "triggers": [
         "cro"
       ],
+      "exclusions": [],
       "phrases": [
         "conversion rate optimization",
         "this page isn",
@@ -10024,6 +10172,7 @@
       "triggers": [
         "customer research"
       ],
+      "exclusions": [],
       "phrases": [
         "icp research",
         "talk to customers",
@@ -10142,6 +10291,7 @@
         "add a column without downtime",
         "migration plan"
       ],
+      "exclusions": [],
       "phrases": [
         "writing a schema",
         "planning a rollback",
@@ -10226,6 +10376,7 @@
         "block dangerous",
         "force push protection"
       ],
+      "exclusions": [],
       "phrases": [
         "installing",
         "configuring command safety hooks",
@@ -10295,6 +10446,7 @@
         "outdated packages",
         "cve in dependency"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "dependency",
@@ -10338,6 +10490,7 @@
       "triggers": [
         "directory submissions"
       ],
+      "exclusions": [],
       "phrases": [
         "submit to directories",
         "backlinks from directories",
@@ -10440,6 +10593,7 @@
       "triggers": [
         "dispatching parallel agents"
       ],
+      "exclusions": [],
       "phrases": [
         "sequential dependencies"
       ],
@@ -10489,6 +10643,7 @@
         "changelog for release",
         "what shipped"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "draft",
@@ -10524,6 +10679,7 @@
         "trace viewer",
         "e2e suite"
       ],
+      "exclusions": [],
       "phrases": [
         "writing playwright tests",
         "structuring page objects",
@@ -10588,6 +10744,7 @@
       "triggers": [
         "emails"
       ],
+      "exclusions": [],
       "phrases": [
         "email sequence",
         "drip campaign",
@@ -10690,6 +10847,7 @@
         "emil kowalski",
         "invisible details"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "emil",
@@ -10773,6 +10931,7 @@
         "result type",
         "graceful failure"
       ],
+      "exclusions": [],
       "phrases": [
         "designing error types",
         "circuit breakers",
@@ -10841,6 +11000,7 @@
         "execute the plan",
         "work through the plan"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "executing",
@@ -10881,6 +11041,7 @@
         "animation opportunities",
         "where should we animate"
       ],
+      "exclusions": [],
       "phrases": [
         "t animate but should, and reject everything that shouldn",
         "what could be animated here?",
@@ -10954,6 +11115,7 @@
       "triggers": [
         "finishing a development branch"
       ],
+      "exclusions": [],
       "phrases": [
         "implementation is complete",
         "all tests pass",
@@ -11009,6 +11171,7 @@
       "triggers": [
         "free tools"
       ],
+      "exclusions": [],
       "phrases": [
         "engineering as marketing",
         "free tool",
@@ -11110,6 +11273,7 @@
       "triggers": [
         "gpt tasteskill"
       ],
+      "exclusions": [],
       "phrases": [
         "(pinning",
         "stacking",
@@ -11198,6 +11362,7 @@
         "repo map",
         "file line spans"
       ],
+      "exclusions": [],
       "phrases": [
         "the repo has a graft",
         "context index built by the graft cli"
@@ -11274,6 +11439,7 @@
       "triggers": [
         "graphify"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "graphify",
@@ -11347,6 +11513,7 @@
       "triggers": [
         "hallmark"
       ],
+      "exclusions": [],
       "phrases": [
         "the user asks to build a new app",
         "landing page",
@@ -11438,6 +11605,7 @@
         "too much text",
         "get to the point"
       ],
+      "exclusions": [],
       "phrases": [
         "stop adhd mode"
       ],
@@ -11513,6 +11681,7 @@
       "triggers": [
         "image"
       ],
+      "exclusions": [],
       "phrases": [
         "ai image generation",
         "generate an image",
@@ -11624,6 +11793,7 @@
       "triggers": [
         "image to code skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "image",
@@ -11697,6 +11867,7 @@
       "triggers": [
         "imagegen frontend mobile"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "imagegen",
@@ -11770,6 +11941,7 @@
       "triggers": [
         "imagegen frontend web"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "imagegen",
@@ -11848,6 +12020,7 @@
         "improve the animations",
         "motion audit"
       ],
+      "exclusions": [],
       "phrases": [
         "audit the motion",
         "make this app feel better",
@@ -11918,6 +12091,7 @@
         "backlog of issues",
         "label issues"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "issue",
@@ -11972,6 +12146,7 @@
       "triggers": [
         "launch"
       ],
+      "exclusions": [],
       "phrases": [
         "product hunt",
         "feature release",
@@ -12069,6 +12244,7 @@
       "triggers": [
         "lead magnets"
       ],
+      "exclusions": [],
       "phrases": [
         "lead magnet",
         "gated content",
@@ -12180,6 +12356,7 @@
         "cap the spend",
         "early exit"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "loop",
@@ -12216,6 +12393,7 @@
         "constraints file",
         "binding rules for the loop"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "loop",
@@ -12263,6 +12441,7 @@
         "state file",
         "linear board"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "loop",
@@ -12321,6 +12500,7 @@
         "verify before done",
         "prove it is fixed"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "loop",
@@ -12371,6 +12551,7 @@
       "triggers": [
         "marketing council"
       ],
+      "exclusions": [],
       "phrases": [
         "board of advisors",
         "advisory board",
@@ -12463,6 +12644,7 @@
       "triggers": [
         "marketing ideas"
       ],
+      "exclusions": [],
       "phrases": [
         "growth ideas",
         "how to market",
@@ -12553,6 +12735,7 @@
       "triggers": [
         "marketing loops"
       ],
+      "exclusions": [],
       "phrases": [
         "marketing loop",
         "recurring marketing workflow",
@@ -12653,6 +12836,7 @@
         "12 month plan",
         "90 day plan"
       ],
+      "exclusions": [],
       "phrases": [
         "go-to-market plan",
         "aarrr plan",
@@ -12741,6 +12925,7 @@
       "triggers": [
         "marketing psychology"
       ],
+      "exclusions": [],
       "phrases": [
         "psychology",
         "mental models",
@@ -12850,6 +13035,7 @@
         "office document",
         "extract text from"
       ],
+      "exclusions": [],
       "phrases": [
         "the user needs docx",
         "html converted",
@@ -12906,6 +13092,7 @@
         "write an mcp server",
         "expose tools over mcp"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "debugging an mcp server — tools",
@@ -12976,6 +13163,7 @@
         "one line fix",
         "fix the failing test"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "minimal",
@@ -13029,6 +13217,7 @@
       "triggers": [
         "minimalist skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "minimalist",
@@ -13090,6 +13279,7 @@
         "utf8mb4",
         "explain analyze"
       ],
+      "exclusions": [],
       "phrases": [
         "designing mysql",
         "mariadb schemas",
@@ -13146,6 +13336,115 @@
       "model_role": "coder",
       "pack": "ecc"
     },
+    "odl-pdf": {
+      "path": "skills/odl-pdf/SKILL.md",
+      "name": "odl-pdf",
+      "description": "Procedure for extracting structured data from PDFs with opendataloader-pdf (ODL) correctly: read the installed tool's own help to discover its current options, build the minimal command for the user's goal, verify the extraction actually succeeded, and diagnose silent failures the tool does not report. Use when the user is using, evaluating, or considering opendataloader-pdf/ODL to extract, parse, or convert PDF content to text, markdown, JSON, or HTML — including scanned-PDF OCR, tables, bounding boxes, or a RAG pipeline over PDFs. Do NOT use for PDF merge/split/rotate, Office-format conversion, form filling, or PDF/UA accessibility-compliance tagging.",
+      "triggers": [
+        "odl pdf",
+        "opendataloader-pdf",
+        "open data loader pdf",
+        "structured pdf extraction",
+        "pdf to json",
+        "pdf bounding boxes",
+        "ocr scanned pdf",
+        "scanned pdf ocr",
+        "pdf rag citations",
+        "extract tables from pdf",
+        "citation-ready pdf rag"
+      ],
+      "exclusions": [
+        "merge",
+        "split",
+        "rotate",
+        "form filling",
+        "fill a pdf form",
+        "office conversion",
+        "word to pdf",
+        "docx to pdf",
+        "docx or pdf",
+        "xlsx or pdf",
+        "pptx or pdf",
+        "pdf/ua tagging"
+      ],
+      "phrases": [
+        "the user is using",
+        "evaluating",
+        "considering opendataloader-pdf",
+        "odl to extract",
+        "parse",
+        "convert pdf content to text",
+        "markdown",
+        "json",
+        "html — including scanned-pdf ocr",
+        "tables",
+        "bounding boxes"
+      ],
+      "keywords": [
+        "odl",
+        "pdf",
+        "opendataloader-pdf",
+        "open",
+        "data",
+        "loader",
+        "structured",
+        "extraction",
+        "json",
+        "bounding",
+        "boxe",
+        "ocr",
+        "scanned",
+        "rag",
+        "citation",
+        "extract",
+        "table",
+        "citation-ready",
+        "procedure",
+        "extracting",
+        "pdfs",
+        "correctly",
+        "read",
+        "installed",
+        "tool",
+        "discover",
+        "current",
+        "option",
+        "build",
+        "minimal",
+        "command",
+        "goal",
+        "verify",
+        "actually",
+        "succeeded",
+        "diagnose",
+        "silent",
+        "failure",
+        "report",
+        "evaluating",
+        "considering",
+        "parse",
+        "convert",
+        "content",
+        "text",
+        "markdown",
+        "html",
+        "scanned-pdf",
+        "pipeline",
+        "merge",
+        "split",
+        "rotate",
+        "office-format",
+        "conversion",
+        "form",
+        "filling",
+        "ua",
+        "accessibility-compliance",
+        "tagging",
+        "purpose"
+      ],
+      "model_role": "coder",
+      "pack": "opendataloader-pdf"
+    },
     "offers": {
       "path": "skills/offers/SKILL.md",
       "name": "offers",
@@ -13153,6 +13452,7 @@
       "triggers": [
         "offers"
       ],
+      "exclusions": [],
       "phrases": [
         "offer",
         "offer design",
@@ -13261,6 +13561,7 @@
         "first run experience",
         "onboarding conversion"
       ],
+      "exclusions": [],
       "phrases": [
         "onboarding flow",
         "user activation",
@@ -13358,6 +13659,7 @@
       "triggers": [
         "open source"
       ],
+      "exclusions": [],
       "phrases": [
         "for questions about browser-use installation",
         "prompting strategies",
@@ -13428,6 +13730,7 @@
       "triggers": [
         "output skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "output",
@@ -13472,6 +13775,7 @@
       "triggers": [
         "paywalls"
       ],
+      "exclusions": [],
       "phrases": [
         "paywall",
         "upgrade screen",
@@ -13575,6 +13879,7 @@
         "pick a ui library",
         "which package for charts"
       ],
+      "exclusions": [],
       "phrases": [
         "on its own"
       ],
@@ -13626,6 +13931,7 @@
       "triggers": [
         "popups"
       ],
+      "exclusions": [],
       "phrases": [
         "exit intent",
         "popup conversions",
@@ -13731,6 +14037,7 @@
         "after the merge",
         "leftover todos"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "post",
@@ -13777,6 +14084,7 @@
         "open prs",
         "review queue"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "pr",
@@ -13821,6 +14129,7 @@
         "packaging",
         "freemium"
       ],
+      "exclusions": [],
       "phrases": [
         "free trial",
         "price increase",
@@ -13919,6 +14228,7 @@
       "triggers": [
         "product marketing"
       ],
+      "exclusions": [],
       "phrases": [
         "product context",
         "marketing context",
@@ -14007,6 +14317,7 @@
       "triggers": [
         "programmatic seo"
       ],
+      "exclusions": [],
       "phrases": [
         "template pages",
         "pages at scale",
@@ -14103,6 +14414,7 @@
       "triggers": [
         "prospecting"
       ],
+      "exclusions": [],
       "phrases": [
         "build a prospect list",
         "find prospects",
@@ -14211,6 +14523,7 @@
         "multiple versions of this ui",
         "prototype three versions"
       ],
+      "exclusions": [],
       "phrases": [
         "on its own"
       ],
@@ -14268,6 +14581,7 @@
       "triggers": [
         "public relations"
       ],
+      "exclusions": [],
       "phrases": [
         "press",
         "press release",
@@ -14390,6 +14704,7 @@
         "python packaging",
         "python script"
       ],
+      "exclusions": [],
       "phrases": [
         "writing",
         "reviewing python code",
@@ -14478,6 +14793,7 @@
         "conftest",
         "test this python"
       ],
+      "exclusions": [],
       "phrases": [
         "writing pytest tests — fixtures",
         "mocks",
@@ -14544,6 +14860,7 @@
       "triggers": [
         "receiving code review"
       ],
+      "exclusions": [],
       "phrases": [
         "receiving code review feedback",
         "before implementing suggestions",
@@ -14611,6 +14928,7 @@
       "triggers": [
         "redesign skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "redesign",
@@ -14668,6 +14986,7 @@
       "triggers": [
         "referrals"
       ],
+      "exclusions": [],
       "phrases": [
         "referral",
         "affiliate",
@@ -14765,6 +15084,7 @@
       "triggers": [
         "remote browser"
       ],
+      "exclusions": [],
       "phrases": [
         "the agent is running in a sandbox (no gui)",
         "needs to navigate websites",
@@ -14823,6 +15143,7 @@
       "triggers": [
         "requesting code review"
       ],
+      "exclusions": [],
       "phrases": [
         "completing tasks",
         "implementing major features",
@@ -14864,6 +15185,7 @@
         "critique this motion",
         "review the animations"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "review",
@@ -14915,6 +15237,7 @@
       "triggers": [
         "revops"
       ],
+      "exclusions": [],
       "phrases": [
         "revenue operations",
         "lead scoring",
@@ -15015,6 +15338,7 @@
       "triggers": [
         "sales enablement"
       ],
+      "exclusions": [],
       "phrases": [
         "sales deck",
         "pitch deck",
@@ -15114,6 +15438,7 @@
       "triggers": [
         "schema"
       ],
+      "exclusions": [],
       "phrases": [
         "schema markup",
         "structured data",
@@ -15206,6 +15531,7 @@
       "triggers": [
         "scroll world"
       ],
+      "exclusions": [],
       "phrases": [
         "fly through the world",
         "3d world",
@@ -15291,6 +15617,7 @@
         "technical seo",
         "crawl issues"
       ],
+      "exclusions": [],
       "phrases": [
         "why am i not ranking",
         "seo issues",
@@ -15391,6 +15718,7 @@
       "triggers": [
         "signup"
       ],
+      "exclusions": [],
       "phrases": [
         "signup conversions",
         "registration friction",
@@ -15487,6 +15815,7 @@
       "triggers": [
         "site architecture"
       ],
+      "exclusions": [],
       "phrases": [
         "sitemap",
         "site map",
@@ -15587,6 +15916,7 @@
       "triggers": [
         "sms"
       ],
+      "exclusions": [],
       "phrases": [
         "sms marketing",
         "text message campaigns",
@@ -15690,6 +16020,7 @@
       "triggers": [
         "social"
       ],
+      "exclusions": [],
       "phrases": [
         "linkedin post",
         "twitter thread",
@@ -15802,6 +16133,7 @@
       "triggers": [
         "soft skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "soft",
@@ -15875,6 +16207,7 @@
       "triggers": [
         "stitch skill"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "stitch",
@@ -15948,6 +16281,7 @@
       "triggers": [
         "subagent driven development"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "subagent",
@@ -15992,6 +16326,7 @@
         "root cause",
         "narrow down the cause"
       ],
+      "exclusions": [],
       "phrases": [
         "encountering any bug",
         "test failure",
@@ -16065,6 +16400,7 @@
         "portfolio site",
         "avoid inter"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "taste",
@@ -16138,6 +16474,7 @@
       "triggers": [
         "taste skill v1"
       ],
+      "exclusions": [],
       "phrases": [],
       "keywords": [
         "taste",
@@ -16213,6 +16550,7 @@
         "tdd",
         "write a failing test"
       ],
+      "exclusions": [],
       "phrases": [
         "implementing any feature",
         "bugfix",
@@ -16275,6 +16613,7 @@
         "git worktree",
         "parallel branches"
       ],
+      "exclusions": [],
       "phrases": [
         "git worktree fallback"
       ],
@@ -16329,6 +16668,7 @@
       "triggers": [
         "using superpowers"
       ],
+      "exclusions": [],
       "phrases": [
         "use skills"
       ],
@@ -16362,6 +16702,7 @@
       "triggers": [
         "verification before completion"
       ],
+      "exclusions": [],
       "phrases": [
         "about to claim work is complete",
         "fixed",
@@ -16415,6 +16756,7 @@
       "triggers": [
         "video"
       ],
+      "exclusions": [],
       "phrases": [
         "video production",
         "ai video",
@@ -16541,6 +16883,7 @@
         "vite vue",
         "script setup"
       ],
+      "exclusions": [],
       "phrases": [
         "building",
         "reviewing vue 3",
@@ -16634,6 +16977,7 @@
         "main actor",
         "xcode"
       ],
+      "exclusions": [],
       "phrases": [
         "writing",
         "reviewing",
@@ -16719,6 +17063,7 @@
         "implementation plan",
         "spec into a plan"
       ],
+      "exclusions": [],
       "phrases": [
         "you have a spec",
         "requirements for a multi-step task",
@@ -16765,6 +17110,7 @@
       "triggers": [
         "writing skills"
       ],
+      "exclusions": [],
       "phrases": [
         "creating new skills",
         "editing existing skills",
@@ -16829,6 +17175,7 @@
       "triggers": [
         "x402"
       ],
+      "exclusions": [],
       "phrases": [
         "just use it",
         "build it in",

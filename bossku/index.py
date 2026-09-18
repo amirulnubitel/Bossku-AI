@@ -190,6 +190,12 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
         "pdf", "docx", "xlsx", "pptx", "convert to markdown", "office document",
         "extract text from",
     ],
+    "odl-pdf": [
+        "opendataloader-pdf", "open data loader pdf", "odl pdf",
+        "structured pdf extraction", "pdf to json", "pdf bounding boxes",
+        "ocr scanned pdf", "scanned pdf ocr", "pdf rag citations",
+        "extract tables from pdf", "citation-ready pdf rag",
+    ],
     "bosskuai-financial-modeling": [
         "runway", "burn rate", "forecast", "projections", "arr", "mrr", "cash flow",
         "financial model", "revenue model",
@@ -453,6 +459,16 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "python-testing": ["pytest", "python tests", "pytest fixture", "parametrize", "monkeypatch", "unittest mock", "pytest coverage", "conftest", "test this python"],
 }
 
+# High-confidence task boundaries. These live in the generated index so agents can
+# avoid a superficially related skill without adding text to every loaded prompt.
+CURATED_EXCLUSIONS: dict[str, list[str]] = {
+    "odl-pdf": [
+        "merge", "split", "rotate", "form filling", "fill a pdf form",
+        "office conversion", "word to pdf", "docx to pdf", "docx or pdf",
+        "xlsx or pdf", "pptx or pdf", "pdf/ua tagging",
+    ],
+}
+
 # Explicit role assignments; the rest fall back to keyword heuristics.
 CURATED_ROLES: dict[str, str] = {
     "bosskuai-planning-execution": "planner",
@@ -493,6 +509,7 @@ CURATED_ROLES: dict[str, str] = {
     "antislop-layoutmobile": "reviewer",
     "antislop-code": "reviewer",
     "bosskuai-headroom": "coder",
+    "odl-pdf": "coder",
 }
 
 _ROLE_HINTS: tuple[tuple[str, tuple[str, ...]], ...] = (
@@ -671,6 +688,7 @@ def build_index(root: Path | None = None) -> dict:
             "name": meta.name,
             "description": description,
             "triggers": triggers,
+            "exclusions": _clean(CURATED_EXCLUSIONS.get(sid, []), 20),
             "phrases": phrases,
             "keywords": kw[:60],
             "model_role": _derive_role(sid, description),

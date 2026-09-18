@@ -1,6 +1,6 @@
 # Third-party skill packs
 
-BosskuAI vendors Agent Skills from these MIT-licensed upstream projects. Provenance is tracked in [`skills/vendored.json`](../skills/vendored.json).
+BosskuAI vendors Agent Skills from these open-source upstream projects. Provenance is tracked in [`skills/vendored.json`](../skills/vendored.json).
 
 | Pack | Upstream | License | Copyright |
 |---|---|---|---|
@@ -19,6 +19,7 @@ BosskuAI vendors Agent Skills from these MIT-licensed upstream projects. Provena
 | i-have-adhd | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | MIT | Copyright (c) 2026 Ayoub Ghriss |
 | ecc | [affaan-m/ECC](https://github.com/affaan-m/ECC) | MIT | Copyright (c) 2026 Affaan Mustafa |
 | antislop | [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) | MIT | Copyright (c) anti-slop contributors |
+| opendataloader-pdf | [opendataloader-project/opendataloader-pdf](https://github.com/opendataloader-project/opendataloader-pdf) | Apache-2.0 | Copyright OpenDataLoader contributors |
 
 `markitdown` is a thin Bossku-authored skill that documents the upstream CLI; the Microsoft package is not bundled.
 
@@ -31,6 +32,8 @@ BosskuAI vendors Agent Skills from these MIT-licensed upstream projects. Provena
 `dcg` is a thin Bossku skill that documents the upstream Destructive Command Guard CLI/hooks; the Rust binary is not bundled. Upstream license is MIT **with an OpenAI/Anthropic rider** — read the upstream `LICENSE` before redistributing the binary or derivative works.
 
 `antislop` vendors the upstream six-skill suite unchanged. Bossku adds routing metadata in its generated index rather than rewriting the vendored skill text.
+
+`opendataloader-pdf` vendors the complete upstream `skills/odl-pdf/` bundle unchanged. Its maintenance-only sibling is intentionally excluded, and the optional OpenDataLoader runtime is not installed automatically.
 
 ## Review cadence
 
