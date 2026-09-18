@@ -99,7 +99,8 @@ See [`docs/installation.md`](docs/installation.md) for the CLI path and per-proj
 | `bossku update` | Refresh user-level skills from this repo |
 | `bossku remember --project . --kind decision "..."` | Save curated memory |
 | `bossku sync --project .` | Export memory to Obsidian |
-| `bossku skills find "laravel security"` | Suggest a skill |
+| `bossku skills find "laravel security"` | Suggest a primary + complementary skill stack |
+| `bossku skills audit` | Measure description context cost and skill integrity |
 | `bossku doctor` | Install health check |
 | `bossku validate --root .` | Repository validation |
 

@@ -1,13 +1,6 @@
 ---
 name: bosskuai-prompt-optimizer
-description: >-
-  Analyze raw prompts, identify intent and gaps, match BosskuAI components
-  (skills/agents/loops), and output a ready-to-paste optimized prompt.
-  Advisory role only — never executes the task itself. Use when the user says
-  "optimize this prompt", "improve my prompt", "how should I ask for", or
-  "help me prompt BosskuAI for this". Do NOT use when the user wants the task
-  executed directly, or says "optimize this code/performance" — those are
-  refactoring tasks, not prompt optimization.
+description: "Use when the user asks to optimize, improve, or draft a prompt for BosskuAI; identify intent and gaps, select relevant skills, agents, and loops, and return a ready-to-paste prompt without executing it. Do not use for code or performance optimization."
 license: MIT
 metadata:
   author: affaan-m/ECC (community contribution by YannJY02)

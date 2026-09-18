@@ -5,7 +5,8 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 ## Routing
 
 - Say `bossku` or use cofounder mode for cross-domain work.
-- `bossku skills find "<task>"` suggests a skill from triggers and keywords.
+- `bossku skills find "<task>"` returns a primary skill and `recommended_stack` of prompt-explicit complements. Read descriptions and remove overlapping candidates before loading.
+- `bossku skills audit` measures always-loaded description size, long skill bodies, provenance grouping, and broken relative references.
 - Deprecated Bossku names resolve via [`skills/aliases.json`](../skills/aliases.json).
 - Vendored third-party skills are listed in [`skills/vendored.json`](../skills/vendored.json).
 
@@ -32,6 +33,9 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 | emil-skills | 12 motion craft / design engineering skills (web + Expo animation, Sonner, Swift) | — |
 | i-have-adhd | Action-first, numbered, no-preamble output shape (explicit `/i-have-adhd`) | — |
 | ecc | 10 curated engineering skills: MySQL/MariaDB, migrations, error handling, MCP servers, Playwright E2E, WCAG 2.2, ADRs, Vue 3, Python, pytest | — |
+| antislop | 6 delivery gates for general output, UI, mobile layout, copy, code comments, and code artifacts | — |
+
+`bosskuai-headroom` routes context-compression work but does not install or configure the optional Headroom runtime. Use it only for bulky tool output; normal concise answers belong to `bosskuai-token-saver`.
 
 Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requirements-optional.txt`](../requirements-optional.txt).
 
@@ -58,6 +62,7 @@ Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requireme
 | `bosskuai-coding-best-practices` | `error-handling` | Typed errors, retries, circuit breakers, user-facing failure messages |
 | `bosskuai-tech-lead` | `architecture-decision-records` | Writing the ADR file itself |
 | `bosskuai-nuxt-development` | `vue-patterns` | Vue 3 / Pinia work outside Nuxt |
+| `bosskuai-taste`, `taste-skill`, `hallmark` | `antislop-ui`, `antislop-layoutmobile` | Use design skills to choose direction, then Anti-Slop specialists to audit the produced UI and responsive behavior |
 | — | `python-patterns`, `python-testing` | Bossku has no Python skill of its own; these are the defaults |
 
 ## Aliases (merged Bossku duplicates)

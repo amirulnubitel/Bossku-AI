@@ -1,11 +1,15 @@
 import io
 import json
+import os
+import stat
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest import mock
 
-from bossku.cli import _doctor
+import bossku
+from bossku.cli import _doctor, main
 from bossku.doctor import gather_doctor_issues
 from bossku.hooks import (
     HOOK_MARKER,
@@ -54,6 +58,14 @@ class MarkerTests(unittest.TestCase):
 
 
 class InstallTests(unittest.TestCase):
+    @staticmethod
+    def _set_tree_writable(path: Path) -> None:
+        if not path.exists():
+            return
+        for child in path.rglob("*"):
+            os.chmod(child, stat.S_IREAD | stat.S_IWRITE | stat.S_IEXEC)
+        os.chmod(path, stat.S_IREAD | stat.S_IWRITE | stat.S_IEXEC)
+
     def test_install_and_uninstall_user_skills(self):
         with tempfile.TemporaryDirectory() as tmp:
             home = Path(tmp)
@@ -81,9 +93,49 @@ class InstallTests(unittest.TestCase):
             home = Path(tmp)
             install_user(root=ROOT, home=home, profile="full")
             agents = home / ".agents" / "skills"
-            for sid in ("product-marketing", "brainstorming", "hallmark", "graphify", "graft", "browser-use", "markitdown", "dcg"):
+            for sid in (
+                "product-marketing",
+                "brainstorming",
+                "hallmark",
+                "graphify",
+                "graft",
+                "browser-use",
+                "markitdown",
+                "dcg",
+                "antislop",
+                "antislop-ui",
+                "bosskuai-headroom",
+            ):
                 self.assertTrue((agents / sid).is_dir(), msg=f"missing {sid}")
             uninstall_user(root=ROOT, home=home)
+
+    def test_reinstall_and_uninstall_handle_read_only_skill_trees(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            install_user(root=ROOT, home=home, profile="core")
+            agents_skill = home / ".agents" / "skills" / "cofounder"
+            try:
+                for child in agents_skill.rglob("*"):
+                    os.chmod(child, stat.S_IREAD)
+                os.chmod(agents_skill, stat.S_IREAD)
+
+                install_user(root=ROOT, home=home, profile="core")
+                self.assertTrue((agents_skill / "SKILL.md").is_file())
+                uninstall_user(root=ROOT, home=home)
+                self.assertFalse(agents_skill.exists())
+            finally:
+                self._set_tree_writable(home)
+
+    def test_install_copies_shared_references_for_both_skill_roots(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            result = install_user(root=ROOT, home=home, profile="core")
+
+            relative = Path("checklists") / "skill-health-checklist.md"
+            self.assertTrue((home / ".agents" / "references" / relative).is_file())
+            self.assertTrue((home / ".claude" / "references" / relative).is_file())
+            self.assertGreater(result["agents_reference_count"], 0)
+            self.assertEqual(result["agents_reference_count"], result["claude_reference_count"])
 
 
 class VendoredTests(unittest.TestCase):
@@ -92,6 +144,8 @@ class VendoredTests(unittest.TestCase):
         self.assertIn("copywriting", ids)
         self.assertIn("brainstorming", ids)
         self.assertIn("hallmark", ids)
+        self.assertIn("antislop", ids)
+        self.assertIn("antislop-ui", ids)
         self.assertGreaterEqual(len(ids), 68)
 
     def test_managed_vendored_skill_name(self):
@@ -111,7 +165,12 @@ class InitTests(unittest.TestCase):
             text = agents.read_text(encoding="utf-8")
             self.assertIn("Keep this line.", text)
             self.assertIn("bosskuai:start", text)
+            self.assertIn("complementary", text)
+            self.assertIn("Anti-Slop", text)
+            self.assertIn("verify", text)
             self.assertTrue((project / ".bossku" / "memory" / "project.md").is_file())
+            metadata = json.loads((project / ".bossku" / "project.json").read_text(encoding="utf-8"))
+            self.assertEqual(metadata["bossku_version"], bossku.__version__)
             claude = (project / "CLAUDE.md").read_text(encoding="utf-8")
             self.assertTrue(claude_imports_agents_md(claude))
             omp_agents = (project / ".omp" / "AGENTS.md").read_text(encoding="utf-8")
@@ -128,6 +187,21 @@ class InitTests(unittest.TestCase):
             self.assertTrue((project / "AGENTS.md").is_file())
             omp_agents = (project / ".omp" / "AGENTS.md").read_text(encoding="utf-8")
             self.assertTrue(omp_imports_agents_md(omp_agents))
+
+    def test_init_refreshes_old_project_metadata_without_losing_fields(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            project = Path(tmp) / "existing"
+            meta = project / ".bossku"
+            meta.mkdir(parents=True)
+            (meta / "project.json").write_text(
+                json.dumps({"bossku_version": "2.0.0", "profile": "full", "keep": True}),
+                encoding="utf-8",
+            )
+            init_project(project, root=ROOT)
+            payload = json.loads((meta / "project.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["bossku_version"], bossku.__version__)
+            self.assertEqual(payload["profile"], "full")
+            self.assertTrue(payload["keep"])
 
 
 class MemoryTests(unittest.TestCase):
@@ -253,6 +327,32 @@ class HooksTests(unittest.TestCase):
 
 
 class SkillTests(unittest.TestCase):
+    def test_skill_audit_cli_outputs_json(self):
+        stdout = io.StringIO()
+        with redirect_stdout(stdout):
+            result = main(["skills", "audit", "--root", str(ROOT), "--json"])
+        self.assertEqual(result, 0)
+        report = json.loads(stdout.getvalue())
+        self.assertGreater(report["skill_count"], 0)
+        self.assertEqual(report["custom_broken_relative_links"], [])
+
+    def test_skill_find_cli_exposes_recommended_stack(self):
+        stdout = io.StringIO()
+        with redirect_stdout(stdout):
+            result = main(
+                [
+                    "skills",
+                    "find",
+                    "fix mobile overflow and remove generic AI UI",
+                    "--root",
+                    str(ROOT),
+                ]
+            )
+        self.assertEqual(result, 0)
+        payload = json.loads(stdout.getvalue())
+        self.assertTrue(payload["recommended_stack"])
+        self.assertIn("stack_note", payload)
+
     def test_resolve_alias(self):
         self.assertEqual(
             resolve_skill_id("bosskuai-caveman", ROOT),
@@ -287,6 +387,7 @@ class ValidateTests(unittest.TestCase):
     def test_package_version_matches_manifests(self):
         version = package_version(ROOT)
         self.assertEqual(version, "2.1.0")
+        self.assertEqual(bossku.__version__, version)
         errors = validate_plugin_manifests(ROOT)
         self.assertEqual(errors, [], msg="\n".join(errors))
 
@@ -334,7 +435,10 @@ class DoctorTests(unittest.TestCase):
             init_project(project, root=ROOT)
             issues = gather_doctor_issues(ROOT, home, project=project)
             self.assertEqual(issues, [], msg="\n".join(issues))
-            self.assertEqual(_doctor(ROOT, home, project), 0)
+            stdout = io.StringIO()
+            with redirect_stdout(stdout):
+                self.assertEqual(_doctor(ROOT, home, project), 0)
+            self.assertIn(f"project instructions: ready at {project.resolve()}", stdout.getvalue())
 
 
 if __name__ == "__main__":

@@ -1,16 +1,6 @@
 ---
 name: bosskuai-ponytail
-description: >
-  Lazy-senior-dev mode: forces the simplest solution that actually works —
-  shortest, most minimal, fewest files. Question whether the task needs to exist
-  (YAGNI), reach for the standard library before custom code, native platform
-  features before dependencies, one line before fifty. Always-on default in
-  BosskuAI sessions across Claude Code, Codex, and Cursor. Supports intensity
-  levels: lite, full (default), ultra. Use whenever the user says "ponytail",
-  "be lazy", "lazy mode", "simplest/minimal solution", "yagni", "do less", or
-  "shortest path", or complains about over-engineering, bloat, boilerplate, or
-  unnecessary dependencies. Governs WHAT you build; pair with
-  bosskuai-token-saver for terse prose. Source: ponytail (MIT, DietrichGebert).
+description: "Use when the user asks for ponytail, lazy mode, YAGNI, the simplest or shortest solution, fewer files or dependencies, or complains about over-engineering; governs what to build, while bosskuai-token-saver governs response length."
 ---
 
 # BosskuAI Ponytail — Lazy Senior Dev

@@ -1,10 +1,6 @@
 ---
 name: bosskuai-greptile-review-loop
-description: >
-  Iteratively improves a PR (GitHub), MR (GitLab), or shelved changelist (Perforce) until Greptile
-  gives it a 5/5 confidence score with zero unresolved comments. Triggers Greptile review, fixes all
-  actionable comments, pushes/re-shelves, re-triggers review, and repeats. Use when the user wants to
-  fully optimize a PR/MR/CL against Greptile's code review standards.
+description: "Use when iteratively improving a GitHub PR, GitLab MR, or Perforce changelist against Greptile review until its confidence target is met and actionable comments are resolved, including re-review and bounded fix loops."
 license: MIT
 compatibility: Requires git, gh (GitHub CLI) or glab (GitLab CLI) authenticated, and Greptile installed on the repo. For Perforce, requires p4 CLI authenticated.
 metadata:

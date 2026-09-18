@@ -1,6 +1,6 @@
 ---
 name: bosskuai-expo-react-native
-description: "Use this for React Native and Expo work — Expo SDK and Expo Router, EAS Build and EAS Update, development builds vs Expo Go, config plugins and native modules, navigation, offline storage, push notifications, deep links, permissions, on-device performance, and iOS vs Android differences. Store submission and release belong to bosskuai-mobile-app-release; web React to bosskuai-react-development."
+description: "Use when building React Native or Expo apps with Expo Router, EAS Build or Update, development builds, config plugins, native modules, navigation, offline storage, notifications, deep links, permissions, device performance, and iOS or Android differences."
 ---
 
 # BosskuAI Expo / React Native

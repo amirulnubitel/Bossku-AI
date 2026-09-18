@@ -1,6 +1,6 @@
 ---
 name: bosskuai-go-development
-description: "Use this for Go (Golang) backend, worker, and CLI work — module layout, idiomatic errors, context propagation, goroutines and channels without leaks, net/http or Echo/Chi/Gin services, sqlc/pgx data access, table tests with the race detector, pprof profiling, and small static production builds. Also use to audit or review existing Go code."
+description: "Use when building or reviewing Go backends, workers, or CLIs, including module layout, errors, context, goroutines and channels, net/http or common routers, sqlc or pgx, table tests, the race detector, pprof, and small production builds."
 ---
 
 # BosskuAI Go Development

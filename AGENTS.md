@@ -14,8 +14,8 @@ Every response must begin with:
 
 - Say `bossku` or ask for cofounder mode.
 - Before non-trivial work, match the request to an installed skill using each skill's `description` (especially **Use when…**) and the pack routing table below.
-- Load one primary skill; at most one secondary when clearly needed. Put the primary skill id in the mandatory indicator.
-- If the domain is unclear, run `bossku skills find "<task>"`. It returns a ranked shortlist; when `confident` is `false` the top hit is weak, so read `matches` and pick, rather than trusting `skill_id`. Fall back to `cofounder` if nothing fits.
+- Choose one primary skill plus the smallest complementary set justified by distinct prompt concerns. Multiple skills are valid; overlapping skills are not. Put the primary skill id in the mandatory indicator.
+- If the domain is unclear, run `bossku skills find "<task>"`. Read `recommended_stack` as candidates, inspect their descriptions, remove overlaps, and use `matches` when confidence is weak. Fall back to `cofounder` if nothing fits.
 - Trivial tasks: answer directly (still show the indicator).
 
 ## Co-founder workflow
@@ -23,7 +23,7 @@ Every response must begin with:
 For meaningful work:
 
 1. Read project memory in `.bossku/memory/` when relevant.
-2. Classify the task and pick the lightest accurate skill.
+2. Classify the task and pick the lightest accurate skill stack.
 3. **Planner** before multi-file changes; **Executor** after the plan is clear.
 4. **Auditor** after substantive edits; **Final reviewer** before high-stakes completion.
 5. Save durable outcomes with `bossku remember --kind decision|plan|learning|project`.
@@ -36,7 +36,11 @@ Simplest thing that works: YAGNI → stdlib → native → installed dep → min
 
 ## Anti-slop (always on)
 
-No generic placeholders, filler verbs, fake-perfect numbers, or em-dash decoration. For UI layout, type, color, and content, load `bosskuai-taste` before generating. For anything that moves (easing, duration, interruption, gesture), load `emil-design-eng` or `animate` (`animate-expo` in React Native); Emil motion decisions override `taste-skill` / `hallmark` easing opinions.
+Use `antislop` as the final delivery gate when output quality is a material concern. Add only the relevant specialist: `antislop-ui` for generic visual patterns, `antislop-layoutmobile` for small-screen reflow, `antislop-copywriting` for prose, `antislop-human` for generated comments, or `antislop-code` for code artifacts. Use `bosskuai-taste` or a design-direction skill before UI generation; Anti-Slop audits the result. For motion, use `emil-design-eng` or `animate` (`animate-expo` in React Native).
+
+## Superpowers process
+
+For multi-step development, use the phase-specific Superpowers skill: brainstorm before ambiguous design, write a plan before broad edits, apply TDD for behavior changes, use systematic debugging for unknown failures, and run verification before completion. Process skills complement the domain skill; they do not replace it.
 
 ## Loop engineering (always on)
 
@@ -51,15 +55,7 @@ Route CI → `ci-triage`; PRs → `pr-review-triage`; backlog sweeps → `loop-t
 
 ## Context first (always on)
 
-When the repo has a `graft/` index, get context from graft before grepping or reading source files:
-
-1. `graft ask "<question>" --source` — locate and understand (the default).
-2. `graft grep "<symbol>"` — every occurrence, when you need to be exhaustive.
-3. `graft callers <symbol> --depth 2` — blast radius, before a rename or signature change.
-4. `graft skeleton <file>` — a file's API in ~200 tokens.
-5. `graft map` — orientation in an unfamiliar repo.
-
-One call usually answers; act on it rather than chaining tools. Load the `graft` skill for the full guide. No `graft/` directory means no index — run `graft build` (needs `@nanonets/graft`) or work normally with the standard file tools. Disable with "normal mode" (same switch as Ponytail).
+When a repo has a `graft/` index, prefer one targeted `graft ask`, `grep`, `callers`, `skeleton`, or `map` call and then act. Load the `graft` skill for details. Without an index, use narrow standard searches. Use Headroom for reversible compression of bulky tool output only when installed; do not silently install it or change provider routing.
 
 ## Risk pauses
 
@@ -83,6 +79,8 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | Task | Primary skill(s) |
 |---|---|
 | New product / UI that must not look AI-generated | `taste-skill` or `hallmark` (+ `bosskuai-taste` for Bossku anti-slop content rules) |
+| Final anti-AI-slop audit for UI, mobile, copy, comments, or code | antislop — `antislop` plus only the relevant specialist skill(s) |
+| Large logs, files, searches, or tool output exhausting context | `bosskuai-headroom` (runtime installed/configured separately) |
 | Soft / minimal / brutalist UI direction | taste-skill — `soft-skill`, `minimalist-skill`, or `brutalist-skill` |
 | Redesign existing UI / image → code | taste-skill — `redesign-skill`, `image-to-code-skill` |
 | Marketing, CRO, SEO, copy, GTM | marketingskills — start with `product-marketing` |
@@ -115,5 +113,5 @@ python -m unittest discover -s tests -v
 ```
 
 <!-- bosskuai:start -->
-BosskuAI is active. Before multi-step work, match the task to an installed skill (read skill descriptions and pack routing in the global Bossku-AI AGENTS.md). Loop engineering is always on for fix/CI/PR/loop work (see global AGENTS.md). Load one primary skill, then plan → execute → audit. Save durable decisions with `bossku remember`.
+BosskuAI is active. Before multi-step work, match the task to installed skills. Select one primary skill and the smallest complementary set justified by distinct prompt concerns; multiple skills are valid. Use Superpowers for process, Anti-Slop for output quality, and verify before completion. Save durable decisions with `bossku remember`.
 <!-- bosskuai:end -->

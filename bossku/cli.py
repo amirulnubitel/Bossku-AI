@@ -12,7 +12,14 @@ from bossku.init_project import init_project
 from bossku.install import install_user, uninstall_user, update_user
 from bossku.memory import remember, sync_project
 from bossku.index import write_index
-from bossku.skills import find_skill, overdue_packs, pack_stocktake, rank_skills
+from bossku.skills import (
+    audit_skills,
+    find_skill,
+    overdue_packs,
+    pack_stocktake,
+    rank_skills,
+    recommend_skill_stack,
+)
 from bossku.validate import validate_repo
 
 CONFIDENT_SCORE = 6.0
@@ -82,6 +89,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_stock.add_argument("--strict", action="store_true", help="exit 1 when a pack is overdue")
     p_stock.add_argument("--json", action="store_true", dest="as_json")
+    p_audit = p_find_sub.add_parser(
+        "audit", help="Measure skill context size and integrity", parents=[parent]
+    )
+    p_audit.add_argument("--json", action="store_true", dest="as_json")
 
     sub.add_parser("validate", help="Validate repository layout", parents=[parent])
     p_uninstall = sub.add_parser("uninstall", help="Remove user-level BosskuAI skills", parents=[parent])
@@ -130,6 +141,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.skills_cmd == "find":
                 sid, score = find_skill(args.task, root)
                 matches = rank_skills(args.task, root, limit=max(args.limit, 1))
+                stack = recommend_skill_stack(args.task, root, limit=max(args.limit, 1))
                 runner_up = matches[1][1] if len(matches) > 1 else 0.0
                 print(
                     json.dumps(
@@ -144,6 +156,13 @@ def main(argv: list[str] | None = None) -> int:
                             "matches": [
                                 {"skill_id": s, "score": round(v, 3)} for s, v in matches
                             ],
+                            "recommended_stack": [
+                                {"skill_id": s, "score": round(v, 3)} for s, v in stack
+                            ],
+                            "stack_note": (
+                                "Primary plus prompt-explicit complements; read descriptions and "
+                                "remove overlapping skills before loading."
+                            ),
                         },
                         indent=2,
                     )
@@ -153,6 +172,8 @@ def main(argv: list[str] | None = None) -> int:
                 print(json.dumps({"index": str(dest)}, indent=2))
             elif args.skills_cmd == "stocktake":
                 return _stocktake(root, strict=args.strict, as_json=args.as_json)
+            elif args.skills_cmd == "audit":
+                return _skill_audit(root, as_json=args.as_json)
             return 0
         if args.command == "validate":
             errors = validate_repo(root)
@@ -203,6 +224,36 @@ def _stocktake(root: Path | None, *, strict: bool = False, as_json: bool = False
     return 1 if strict and any(r["overdue"] for r in rows) else 0
 
 
+def _skill_audit(root: Path | None, *, as_json: bool = False) -> int:
+    report = audit_skills(root)
+    if as_json:
+        print(json.dumps(report, indent=2))
+        return 0
+    print(
+        f"skills: {report['skill_count']} "
+        f"({report['custom_count']} custom, {report['vendored_count']} vendored)"
+    )
+    print(
+        f"always-loaded descriptions: {report['description_chars']} chars "
+        f"(~{report['approx_description_tokens']} tokens)"
+    )
+    print(
+        f"custom descriptions: {report['custom_description_chars']} chars "
+        f"(~{report['approx_custom_description_tokens']} tokens)"
+    )
+    print(f"descriptions over 300 chars: {len(report['descriptions_over_300_chars'])}")
+    print(f"skill bodies over 500 words: {len(report['bodies_over_500_words'])}")
+    print(f"broken relative links: {len(report['broken_relative_links'])}")
+    if report["broken_relative_links_by_pack"]:
+        detail = ", ".join(
+            f"{pack}={count}"
+            for pack, count in report["broken_relative_links_by_pack"].items()
+        )
+        print(f"broken relative links by pack: {detail}")
+    print(f"custom broken relative links: {len(report['custom_broken_relative_links'])}")
+    return 0
+
+
 def _doctor(root: Path | None, home: Path | None, project: Path | None = None) -> int:
     issues = gather_doctor_issues(root, home, project=project)
     if issues:
@@ -210,7 +261,7 @@ def _doctor(root: Path | None, home: Path | None, project: Path | None = None) -
         for item in issues:
             print(f"  - {item}")
         return 1
-    for line in format_doctor_success(root, home, version=__version__):
+    for line in format_doctor_success(root, home, version=__version__, project=project):
         print(line)
     return 0
 

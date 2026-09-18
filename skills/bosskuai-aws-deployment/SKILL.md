@@ -1,6 +1,6 @@
 ---
 name: bosskuai-aws-deployment
-description: "Use this for deploying and operating on AWS — choosing among ECS Fargate, App Runner, Lambda, EC2, EKS and Amplify; VPC and subnets, ALB and CloudFront, RDS/Aurora, S3, ElastiCache, SQS, SES; IAM least privilege, Secrets Manager and SSM, Terraform or CDK, GitHub Actions OIDC deploys, CloudWatch monitoring, backups and DR, and cost guardrails including the Malaysia and Singapore regions. Generic pipeline design belongs to bosskuai-ci-cd-pipelines; a single server to bosskuai-vps-docker-deployment."
+description: "Use when deploying or operating on AWS across ECS, App Runner, Lambda, EC2, EKS, Amplify, VPC, CloudFront, RDS, S3, queues, IAM, secrets, Terraform or CDK, OIDC deploys, CloudWatch, backups, disaster recovery, regional choices, and cost guardrails."
 ---
 
 # BosskuAI AWS Deployment

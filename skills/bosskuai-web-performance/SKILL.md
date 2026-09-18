@@ -1,6 +1,6 @@
 ---
 name: bosskuai-web-performance
-description: "Use this for frontend and web performance — Core Web Vitals (LCP, INP, CLS), Lighthouse and field data (CrUX, RUM), bundle size and code splitting, images and fonts, caching headers and CDN, SSR/SSG/ISR and hydration cost, third-party scripts, and performance budgets in CI for Nuxt, Next.js, React, and server-rendered pages. Backend CPU, memory, and query profiling belong to bosskuai-performance-profiling."
+description: "Use when diagnosing or improving web performance, including Core Web Vitals, Lighthouse, CrUX or RUM, bundles, images, fonts, caching, CDNs, SSR or hydration cost, third-party scripts, and CI performance budgets; use performance profiling for backend CPU or memory."
 ---
 
 # BosskuAI Web Performance

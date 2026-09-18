@@ -1,6 +1,6 @@
 ---
 name: bosskuai-recipes
-description: "Author, validate, and run BosskuAI recipes — parameterized, shareable workflow templates kept as YAML/JSON under recipes/ with typed parameters, a {{param}} prompt template, and required skills. Use when the user says recipe, make this repeatable, parameterize this workflow, reusable prompt, cookbook, or wants to share or run a saved task with inputs."
+description: "Use when authoring, validating, sharing, or running a BosskuAI recipe: a repeatable YAML or JSON workflow with typed parameters, a prompt template, and required skills; triggers include recipe, cookbook, reusable prompt, or parameterize this workflow."
 ---
 
 # BosskuAI Recipes

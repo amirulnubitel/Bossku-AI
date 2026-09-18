@@ -10,7 +10,32 @@ from bossku.paths import (
     repo_root,
     user_config_dir,
 )
-from bossku.skills import copy_skills_to, is_managed_skill_name, write_routing_cache
+from bossku.skills import (
+    copy_skills_to,
+    is_managed_skill_name,
+    make_path_writable,
+    remove_tree,
+    write_routing_cache,
+)
+
+
+def copy_support_files(source_dir: Path, dest_dir: Path) -> list[str]:
+    """Merge shared support files without deleting unrelated destination files."""
+    if not source_dir.is_dir():
+        return []
+    copied: list[str] = []
+    for source in sorted(source_dir.rglob("*")):
+        if not source.is_file():
+            continue
+        relative = source.relative_to(source_dir)
+        target = dest_dir / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if target.exists():
+            make_path_writable(target)
+        shutil.copyfile(source, target)
+        make_path_writable(target)
+        copied.append(relative.as_posix())
+    return copied
 
 
 def tools_coverage_map(agents_dest: Path, claude_dest: Path) -> dict:
@@ -43,6 +68,8 @@ def install_user(
     claude_dest = claude_skills_dir(h)
     installed_agents = copy_skills_to(agents_dest, r, profile)
     installed_claude = copy_skills_to(claude_dest, r, profile)
+    installed_agents_references = copy_support_files(r / "references", agents_dest.parent / "references")
+    installed_claude_references = copy_support_files(r / "references", claude_dest.parent / "references")
     agents_n = len(installed_agents)
     claude_n = len(installed_claude)
     if agents_n == 0 or claude_n == 0:
@@ -69,6 +96,8 @@ def install_user(
         "agents_count": agents_n,
         "claude_count": claude_n,
         "installed_count": agents_n,
+        "agents_reference_count": len(installed_agents_references),
+        "claude_reference_count": len(installed_claude_references),
         "tools": tools_coverage_map(agents_dest, claude_dest),
         "routing_cache": str(cache_path),
     }
@@ -100,7 +129,7 @@ def uninstall_user(*, root: Path | None = None, home: Path | None = None, purge:
             continue
         for child in list(dest.iterdir()):
             if child.is_dir() and is_managed_skill_name(child.name, effective_root):
-                shutil.rmtree(child)
+                remove_tree(child)
                 removed.append(child.name)
     if purge and cfg_path.is_file():
         cfg_path.unlink()

@@ -1,6 +1,6 @@
 ---
 name: bosskuai-mobile-app-release
-description: "Use this for shipping a mobile app to the Apple App Store and Google Play — release readiness, signing credentials, EAS Build/Submit or Fastlane, TestFlight and Play testing tracks, review guidelines and common rejections, privacy nutrition labels and Data safety forms, phased and staged rollouts, OTA update policy, versioning, crash monitoring, and launch-day operations. Store listing copy and keywords belong to the vendored aso skill; building the app to bosskuai-expo-react-native."
+description: "Use when releasing a mobile app to Apple App Store or Google Play, including signing, EAS or Fastlane, TestFlight and Play tracks, review rejections, privacy forms, staged rollout, OTA policy, versioning, crash monitoring, and launch-day operations."
 ---
 
 # BosskuAI Mobile App Release

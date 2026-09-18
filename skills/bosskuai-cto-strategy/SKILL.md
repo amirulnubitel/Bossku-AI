@@ -1,6 +1,6 @@
 ---
 name: bosskuai-cto-strategy
-description: "Use this when acting as a CTO — technology strategy and 12–18 month technical roadmap, architecture and platform bets, build vs buy vs open source, engineering org design and hiring plan, engineering budget and cloud spend, security and compliance posture (PDPA, SOC 2, ISO 27001), technical debt strategy, vendor and AI/LLM strategy, board and investor technical narrative, and technical due diligence readiness. Day-to-day delivery leadership belongs to bosskuai-tech-lead; product strategy to bosskuai-product-strategy."
+description: "Use when acting as a CTO on technology strategy, roadmaps, architecture bets, build-vs-buy, engineering organization and hiring, budgets, security and compliance posture, technical debt, vendors, AI strategy, board narratives, or technical due diligence."
 ---
 
 # BosskuAI CTO Strategy

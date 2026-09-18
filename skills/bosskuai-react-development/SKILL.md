@@ -1,6 +1,6 @@
 ---
 name: bosskuai-react-development
-description: "Use this for React 18/19 and TypeScript frontend work — component and hook design, choosing state management (local, context, Zustand, TanStack Query, Redux Toolkit), data fetching and caching, forms, routing with React Router, TanStack Router or Next.js App Router, rendering performance, accessibility, and testing with Testing Library and Playwright. Also use to audit an existing React codebase. Vue/Nuxt belongs to bosskuai-nuxt-development; React Native to bosskuai-expo-react-native."
+description: "Use when building or auditing React and TypeScript frontends, including components, hooks, state management, data fetching and caching, forms, routing, rendering performance, accessibility, Testing Library, and Playwright; use the Expo skill for React Native."
 ---
 
 # BosskuAI React Development

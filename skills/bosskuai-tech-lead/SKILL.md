@@ -1,6 +1,6 @@
 ---
 name: bosskuai-tech-lead
-description: "Use this when acting as a tech lead or engineering manager on delivery — slicing epics into shippable increments, estimation and scope negotiation, RFC and ADR process, PR standards and code ownership, branching and release management, definition of done and quality gates, on-call and incident readiness, technical debt triage, sprint execution, DORA and cycle-time metrics, code review culture, mentoring, and unblocking a team. Company-level technology strategy belongs to bosskuai-cto-strategy; performing the review itself to bosskuai-rigorous-code-review."
+description: "Use when acting as a tech lead or engineering manager on delivery, including slicing work, estimating and negotiating scope, RFCs and ADRs, PR standards, ownership, releases, quality gates, on-call readiness, debt triage, delivery metrics, mentoring, and team blockers."
 ---
 
 # BosskuAI Tech Lead

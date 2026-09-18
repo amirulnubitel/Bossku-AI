@@ -16,10 +16,12 @@ from bossku.index import (
 )
 from bossku.skills import (
     _parse_frontmatter,
+    audit_skills,
     find_skill,
     overdue_packs,
     pack_stocktake,
     rank_skills,
+    recommend_skill_stack,
     validate_skills,
 )
 
@@ -71,7 +73,15 @@ ROUTING_CASES = [
     ("pinia store and vue router setup for a vue 3 app", {"vue-patterns", "bosskuai-nuxt-development"}),
     ("add retries with a circuit breaker to the payment client", {"error-handling"}),
     ("de-flake our playwright e2e suite in ci", {"e2e-testing", "bosskuai-browser-automation", "bosskuai-qa-automation-strategy"}),
+    ("remove generic AI slop from this responsive landing page", {"antislop", "antislop-ui", "bosskuai-taste", "taste-skill", "hallmark"}),
+    ("rewrite this copy without em dashes fake claims or chatbot filler", {"antislop-copywriting", "bosskuai-human-output", "copywriting", "copy-editing"}),
+    ("clean obvious AI comments without changing the code", {"antislop-human"}),
+    ("audit keyboard focus contrast and missing UI states", {"accessibility", "bosskuai-ui-ux-design-to-code"}),
+    ("fix mobile overflow responsive reflow and small tap targets", {"antislop-layoutmobile", "accessibility", "bosskuai-ui-ux-design-to-code"}),
+    ("use Headroom to compress this huge tool output and retrieve the original", {"bosskuai-headroom"}),
 ]
+
+NEW_SKILL_ROUTING_CASES = ROUTING_CASES[-6:]
 
 
 class TokenizerTests(unittest.TestCase):
@@ -132,6 +142,28 @@ class IndexTests(unittest.TestCase):
 
 
 class RoutingTests(unittest.TestCase):
+    def test_multi_concern_prompt_recommends_complementary_stack(self):
+        stack = {
+            sid
+            for sid, _ in recommend_skill_stack(
+                "design a responsive landing page, fix mobile overflow and keyboard focus, "
+                "and remove generic AI UI",
+                ROOT,
+                limit=8,
+            )
+        }
+        self.assertIn("antislop-ui", stack)
+        self.assertIn("antislop-layoutmobile", stack)
+        self.assertIn("accessibility", stack)
+
+    def test_new_skill_routes_reach_an_expected_skill_in_top_three(self):
+        misses = []
+        for query, expected in NEW_SKILL_ROUTING_CASES:
+            ranked = {sid for sid, _ in rank_skills(query, ROOT, limit=3)}
+            if not ranked & expected:
+                misses.append(query)
+        self.assertEqual(misses, [])
+
     def test_top1_accuracy_floor(self):
         hits = [q for q, expected in ROUTING_CASES if find_skill(q, ROOT)[0] in expected]
         accuracy = len(hits) / len(ROUTING_CASES)
@@ -185,6 +217,26 @@ class StocktakeTests(unittest.TestCase):
             self.assertEqual(overdue_packs(base), ["ghost"])
 
 
+class SkillAuditTests(unittest.TestCase):
+    def test_audit_quantifies_context_and_integrity(self):
+        report = audit_skills(ROOT)
+        self.assertEqual(report["skill_count"], len(report["skills_by_pack"]["all"]))
+        self.assertGreater(report["approx_description_tokens"], 0)
+        self.assertIn("description_chars", report)
+        self.assertIn("descriptions_over_300_chars", report)
+        self.assertIn("bodies_over_500_words", report)
+        self.assertEqual(report["custom_broken_relative_links"], [])
+
+    def test_design_router_description_stays_compact(self):
+        report = audit_skills(ROOT)
+        self.assertNotIn("bosskuai-taste", report["descriptions_over_300_chars"])
+
+    def test_custom_descriptions_have_a_bounded_context_cost(self):
+        report = audit_skills(ROOT)
+        self.assertLessEqual(report["custom_description_chars"], 22000)
+        self.assertEqual(report["custom_descriptions_over_300_chars"], [])
+
+
 class ValidatorTests(unittest.TestCase):
     def _skill(self, base: Path, name: str, frontmatter: str) -> None:
         d = base / "skills" / name
@@ -212,6 +264,21 @@ class ValidatorTests(unittest.TestCase):
             base = self._repo(tmp)
             self._skill(base, "huge", f'name: huge\ndescription: "{"x" * 1400}"')
             self.assertIn("too long", " ".join(validate_skills(base)))
+
+    def test_flags_broken_custom_relative_link(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = self._repo(tmp)
+            self._skill(
+                base,
+                "broken-link",
+                "name: broken-link\ndescription: Use when testing a broken relative reference.",
+            )
+            skill = base / "skills" / "broken-link" / "SKILL.md"
+            skill.write_text(
+                skill.read_text(encoding="utf-8") + "\n[missing](references/nope.md)\n",
+                encoding="utf-8",
+            )
+            self.assertIn("broken relative link", " ".join(validate_skills(base)))
 
     def test_accepts_a_well_formed_skill(self):
         with tempfile.TemporaryDirectory() as tmp:

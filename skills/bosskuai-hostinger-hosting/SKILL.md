@@ -1,6 +1,6 @@
 ---
 name: bosskuai-hostinger-hosting
-description: "Use this for Hostinger-hosted workloads — KVM VPS provisioning and hardening (SSH keys, UFW, fail2ban, Monarx), hPanel shared or cloud hosting (PHP selector, cron, Git deploy, SSL), Hostinger DNS and email routing, one-box nginx + PM2 + php-fpm + MySQL layouts, snapshots vs real backups, malware or botnet cleanup, abuse suspension recovery, and rebuild-vs-clean decisions. Docker-first single-server deploys belong to bosskuai-vps-docker-deployment; AWS to bosskuai-aws-deployment."
+description: "Use when deploying, hardening, or recovering Hostinger workloads across KVM VPS, hPanel, DNS, email, nginx, PM2, PHP, MySQL, SSL, backups, malware cleanup, abuse suspension, and rebuild-vs-clean decisions; use the VPS Docker skill for container-first hosts."
 ---
 
 # BosskuAI Hostinger Hosting

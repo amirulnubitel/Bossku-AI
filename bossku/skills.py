@@ -2,11 +2,14 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import re
 import shutil
+import stat
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
+from urllib.parse import unquote
 
 from bossku.paths import COFOUNDER_SKILL, MANAGED_SKILL_PREFIX, repo_root
 
@@ -278,6 +281,47 @@ def find_skill(task: str, root: Path | None = None) -> tuple[str, float]:
     return resolve_skill_id(ranked[0][0], root), round(ranked[0][1], 3)
 
 
+def recommend_skill_stack(
+    task: str,
+    root: Path | None = None,
+    limit: int = 5,
+) -> list[tuple[str, float]]:
+    """Return the primary match plus strong, prompt-explicit complements.
+
+    This is deliberately a shortlist, not an instruction to load every result. The
+    agent removes overlaps after reading the matched skill descriptions.
+    """
+    from bossku.index import build_index, load_index
+
+    if limit <= 0:
+        return []
+    data = load_index(root) or build_index(root)
+    entries: dict[str, dict] = data.get("skills", {})
+    ranked = rank_skills(task, root, limit=max(limit * 4, 20))
+    if not ranked or ranked[0][1] <= 0:
+        return []
+
+    task_l = " " + " ".join(re.findall(r"[a-z0-9]+", task.lower())) + " "
+    top_score = ranked[0][1]
+    selected: list[tuple[str, float]] = []
+    for position, (sid, score) in enumerate(ranked):
+        triggers = entries.get(sid, {}).get("triggers", [])
+        explicit = any(
+            len(str(trigger).split()) >= 2
+            and _contains(
+                task_l,
+                " ".join(re.findall(r"[a-z0-9]+", str(trigger).lower())),
+            )
+            for trigger in triggers
+        )
+        strong = score >= 4.0 and score >= top_score * 0.55
+        if position == 0 or explicit or strong:
+            selected.append((resolve_skill_id(sid, root), round(score, 3)))
+        if len(selected) >= limit:
+            break
+    return selected
+
+
 def _contains(haystack: str, phrase: str) -> bool:
     return f" {phrase} " in haystack
 
@@ -356,6 +400,34 @@ def write_routing_cache(dest: Path, root: Path | None = None) -> None:
     dest.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
+def make_path_writable(path: Path) -> None:
+    """Add user-write permission without discarding existing mode bits."""
+    try:
+        os.chmod(path, path.stat().st_mode | stat.S_IWRITE)
+    except FileNotFoundError:
+        return
+
+
+def make_tree_writable(path: Path) -> None:
+    if not path.exists():
+        return
+    for child in path.rglob("*"):
+        make_path_writable(child)
+    make_path_writable(path)
+
+
+def _remove_read_only(func, path: str, _exc_info) -> None:
+    target = Path(path)
+    make_path_writable(target)
+    func(path)
+
+
+def remove_tree(path: Path) -> None:
+    """Remove a tree even when copied files carry Windows read-only attributes."""
+    if path.exists():
+        shutil.rmtree(path, onerror=_remove_read_only)
+
+
 def copy_skills_to(dest_dir: Path, root: Path | None = None, profile: str = "full") -> list[str]:
     base = skills_dir(root)
     dest_dir.mkdir(parents=True, exist_ok=True)
@@ -367,8 +439,9 @@ def copy_skills_to(dest_dir: Path, root: Path | None = None, profile: str = "ful
             continue
         target = dest_dir / sid
         if target.exists():
-            shutil.rmtree(target)
+            remove_tree(target)
         shutil.copytree(src, target)
+        make_tree_writable(target)
         installed.append(sid)
     return installed
 
@@ -423,6 +496,79 @@ def count_managed_skills(dest_dir: Path, root: Path | None = None) -> int:
     return total
 
 
+_MARKDOWN_LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+
+
+def _broken_relative_links(skill_md: Path) -> list[str]:
+    broken: list[str] = []
+    for raw in _MARKDOWN_LINK.findall(skill_md.read_text(encoding="utf-8")):
+        target = raw.strip().strip("<>")
+        if not target or target.startswith(("#", "/", "\\")):
+            continue
+        if re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", target):
+            continue
+        # Ignore optional Markdown titles and validate only the path component.
+        target = unquote(target.split()[0].split("#", 1)[0])
+        if target and not (skill_md.parent / target).resolve().exists():
+            broken.append(raw.strip())
+    return broken
+
+
+def audit_skills(root: Path | None = None) -> dict:
+    """Measure routing context, skill size, provenance, and local link integrity."""
+    base = skills_dir(root)
+    ids = list_skill_ids(root)
+    vendored = load_vendored(root)
+    custom = [sid for sid in ids if sid not in vendored]
+    descriptions: dict[str, str] = {}
+    body_words: dict[str, int] = {}
+    broken_links: list[dict[str, str]] = []
+
+    by_pack: dict[str, list[str]] = {"all": ids, "bossku": custom}
+    for sid in ids:
+        skill_md = base / sid / "SKILL.md"
+        descriptions[sid] = parse_skill_md(skill_md).description
+        body_words[sid] = len(re.findall(r"\b[\w'-]+\b", skill_md.read_text(encoding="utf-8")))
+        pack = vendored.get(sid, "bossku")
+        if pack != "bossku":
+            by_pack.setdefault(pack, []).append(sid)
+        for target in _broken_relative_links(skill_md):
+            broken_links.append({"skill_id": sid, "pack": pack, "target": target})
+
+    description_chars = sum(len(value) for value in descriptions.values())
+    custom_description_chars = sum(len(descriptions[sid]) for sid in custom)
+    broken_by_pack: dict[str, int] = {}
+    for item in broken_links:
+        broken_by_pack[item["pack"]] = broken_by_pack.get(item["pack"], 0) + 1
+    return {
+        "skill_count": len(ids),
+        "custom_count": len(custom),
+        "vendored_count": len(ids) - len(custom),
+        "description_chars": description_chars,
+        "approx_description_tokens": math.ceil(description_chars / 4),
+        "custom_description_chars": custom_description_chars,
+        "approx_custom_description_tokens": math.ceil(custom_description_chars / 4),
+        "descriptions_over_300_chars": sorted(
+            sid for sid, value in descriptions.items() if len(value) > 300
+        ),
+        "custom_descriptions_over_300_chars": sorted(
+            sid for sid in custom if len(descriptions[sid]) > 300
+        ),
+        "custom_descriptions_without_use_when": sorted(
+            sid for sid in custom if not descriptions[sid].lower().startswith("use when")
+        ),
+        "bodies_over_500_words": sorted(
+            sid for sid, words in body_words.items() if words > 500
+        ),
+        "broken_relative_links": broken_links,
+        "broken_relative_links_by_pack": dict(sorted(broken_by_pack.items())),
+        "custom_broken_relative_links": [
+            item for item in broken_links if item["pack"] == "bossku"
+        ],
+        "skills_by_pack": {pack: sorted(pack_ids) for pack, pack_ids in sorted(by_pack.items())},
+    }
+
+
 KNOWN_FRONTMATTER_KEYS = frozenset(
     {
         "name",
@@ -450,6 +596,7 @@ MIN_DESCRIPTION_CHARS = 40
 def validate_skills(root: Path | None = None) -> list[str]:
     errors: list[str] = []
     base = skills_dir(root)
+    vendored = load_vendored(root)
     aliases = load_aliases(root)
     ids = set(list_skill_ids(root))
     for alias, target in aliases.items():
@@ -488,4 +635,7 @@ def validate_skills(root: Path | None = None) -> list[str]:
         unknown = sorted(set(front) - KNOWN_FRONTMATTER_KEYS)
         if unknown:
             errors.append(f"{sid}/SKILL.md unknown frontmatter key(s): {', '.join(unknown)}")
+        if sid not in vendored:
+            for target in _broken_relative_links(skill_md):
+                errors.append(f"{sid}/SKILL.md broken relative link: {target}")
     return errors

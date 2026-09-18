@@ -1,6 +1,6 @@
 ---
 name: bosskuai-ci-cd-pipelines
-description: "Use this for designing, speeding up, or fixing CI/CD pipelines — GitHub Actions (also GitLab CI, Bitbucket) workflow structure, job graphs and matrices, dependency and build caching, concurrency and cancellation, required checks and branch protection, environments with approvals, OIDC cloud auth, build-once artifact and image promotion, release tagging and changelogs, monorepo path filters, secrets hygiene, and flaky-check policy. Classifying a red run belongs to the vendored ci-triage skill; infrastructure to bosskuai-devops-iac; AWS deploy mechanics to bosskuai-aws-deployment."
+description: "Use when designing, speeding up, or fixing CI/CD pipelines, including GitHub Actions, GitLab CI, matrices, caching, concurrency, required checks, OIDC, artifact promotion, releases, monorepo filters, secrets, and flaky-check policy; use ci-triage to classify a red run."
 ---
 
 # BosskuAI CI/CD Pipelines

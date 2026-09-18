@@ -1,6 +1,6 @@
 ---
 name: bosskuai-vps-docker-deployment
-description: Use this for VPS Docker deployment on any provider — server hardening, production Docker Compose topology, Caddy/Traefik/nginx reverse proxy with TLS, registry-based deploys, zero or low-downtime rollouts, migrations, off-box backups and restore drills, monitoring, firewalling, and rollback planning for Laravel, Nuxt, Node, and Go apps.
+description: "Use when deploying Docker workloads to a VPS, including hardening, production Compose, Caddy, Traefik or nginx TLS proxies, registry deploys, low-downtime rollout, migrations, off-box backups, restore drills, monitoring, firewalls, and rollback planning."
 ---
 
 # BosskuAI VPS Docker Deployment

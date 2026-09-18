@@ -57,6 +57,10 @@
     "ecc": {
       "upstream": "affaan-m/ECC",
       "last_synced": "2026-09-07"
+    },
+    "antislop": {
+      "upstream": "miqdadbadjuber/anti-slop",
+      "last_synced": "2026-09-18"
     }
   },
   "packs": {
@@ -207,6 +211,14 @@
       "python-patterns",
       "python-testing",
       "vue-patterns"
+    ],
+    "antislop": [
+      "antislop",
+      "antislop-code",
+      "antislop-copywriting",
+      "antislop-human",
+      "antislop-layoutmobile",
+      "antislop-ui"
     ]
   },
   "skills": {
@@ -329,6 +341,12 @@
     "mysql-patterns": "ecc",
     "python-patterns": "ecc",
     "python-testing": "ecc",
-    "vue-patterns": "ecc"
+    "vue-patterns": "ecc",
+    "antislop": "antislop",
+    "antislop-code": "antislop",
+    "antislop-copywriting": "antislop",
+    "antislop-human": "antislop",
+    "antislop-layoutmobile": "antislop",
+    "antislop-ui": "antislop"
   }
 }

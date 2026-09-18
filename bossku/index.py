@@ -335,6 +335,34 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-engineering-principles": ["engineering principles", "why do we do it this way"],
     "bosskuai-ponytail": ["simplest thing", "yagni", "minimal code", "over-engineered"],
     "bosskuai-human-output": ["sound human", "less robotic", "rewrite naturally"],
+    "antislop": [
+        "anti slop", "antislop", "remove ai slop", "generic ai output",
+        "delivery gate", "quality gate",
+    ],
+    "antislop-ui": [
+        "generic ai ui", "ai generated ui", "gradient cards", "landing page slop",
+        "dashboard slop", "distinctive interface", "template looking ui",
+    ],
+    "antislop-copywriting": [
+        "ai copy", "copy slop", "em dashes", "fake claims", "chatbot filler",
+        "rewrite naturally", "marketing copy cleanup",
+    ],
+    "antislop-human": [
+        "ai comments", "remove ai comments", "clean generated comments",
+        "humanize code comments", "comment cleanup",
+    ],
+    "antislop-layoutmobile": [
+        "mobile overflow", "mobile reflow", "responsive layout", "tap targets",
+        "small screen", "horizontal scroll", "mobile audit",
+    ],
+    "antislop-code": [
+        "ai generated code", "code slop", "unnecessary abstraction",
+        "verbose code", "generated code cleanup",
+    ],
+    "bosskuai-headroom": [
+        "headroom", "compress tool output", "context compression", "retrieve original",
+        "headroom wrap", "headroom deploy", "headroom savings", "large tool output",
+    ],
     "bosskuai-autonomous-loops": ["autonomous loop", "loop architecture", "multi step pipeline"],
     "bosskuai-ratchet-loop": ["ratchet", "incremental tightening", "no backsliding"],
     "bosskuai-pr-check": ["check this pr", "pr review", "review my changes"],
@@ -418,7 +446,7 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "error-handling": ["error handling", "typed errors", "error boundary", "retry logic", "retries", "circuit breaker", "exponential backoff", "user facing error message", "custom exception", "result type", "graceful failure"],
     "mcp-server-patterns": ["mcp server", "build an mcp server", "model context protocol", "mcp tool definition", "mcp resources", "streamable http", "stdio transport", "mcp sdk", "write an mcp server", "expose tools over mcp"],
     "e2e-testing": ["playwright", "e2e test", "end to end test", "page object model", "flaky e2e", "playwright config", "playwright ci", "test artifacts", "trace viewer", "e2e suite"],
-    "accessibility": ["accessibility", "a11y", "wcag", "wcag 2.2", "screen reader", "keyboard navigation", "focus order", "aria", "contrast ratio", "color contrast", "accessible form", "axe"],
+    "accessibility": ["accessibility", "a11y", "wcag", "wcag 2.2", "screen reader", "keyboard navigation", "keyboard focus", "focus order", "aria", "contrast ratio", "color contrast", "accessible form", "axe"],
     "architecture-decision-records": ["adr", "architecture decision record", "decision record", "record the architecture decision", "why did we choose", "document this decision", "adr log", "write an adr"],
     "vue-patterns": ["vue", "vue 3", "composition api", "pinia", "vue router", "ref vs reactive", "composable", "vue component", "watcheffect", "defineprops", "vite vue", "script setup"],
     "python-patterns": ["python", "pythonic", "pep 8", "type hints", "dataclass", "pydantic", "python idioms", "python code review", "mypy", "asyncio", "python packaging", "python script"],
@@ -458,6 +486,13 @@ CURATED_ROLES: dict[str, str] = {
     "vue-patterns": "coder",
     "python-patterns": "coder",
     "python-testing": "coder",
+    "antislop": "reviewer",
+    "antislop-ui": "reviewer",
+    "antislop-copywriting": "reviewer",
+    "antislop-human": "reviewer",
+    "antislop-layoutmobile": "reviewer",
+    "antislop-code": "reviewer",
+    "bosskuai-headroom": "coder",
 }
 
 _ROLE_HINTS: tuple[tuple[str, tuple[str, ...]], ...] = (

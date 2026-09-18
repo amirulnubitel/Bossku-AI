@@ -82,6 +82,7 @@ def format_doctor_success(
     home: Path | None,
     *,
     version: str,
+    project: Path | None = None,
 ) -> list[str]:
     h = home if home is not None else Path.home()
     r = repo_root(root)
@@ -93,10 +94,13 @@ def format_doctor_success(
         f"  cursor, codex, opencode, omp: {agents_path} ({n} managed skills)"
     )
     lines.append(f"  claude_code: {claude_path} ({n} managed skills)")
-    lines.append(
-        "  project instructions: run `bossku init <project>` for AGENTS.md, "
-        "CLAUDE.md, and .omp/"
-    )
+    if project is not None:
+        lines.append(f"  project instructions: ready at {project.resolve()}")
+    else:
+        lines.append(
+            "  project instructions: run `bossku init <project>` for AGENTS.md, "
+            "CLAUDE.md, and .omp/"
+        )
     status = hooks_status(h)
     installed = [tool for tool, on in status.items() if on]
     if installed:

@@ -4,6 +4,7 @@ import json
 import shutil
 from pathlib import Path
 
+from bossku import __version__
 from bossku.memory import init_memory_templates
 from bossku.paths import MARKER_END, MARKER_START, project_meta_dir
 from bossku.skills import copy_skills_to, skills_dir
@@ -36,11 +37,10 @@ def init_project(
     meta = project_meta_dir(project)
     meta.mkdir(parents=True, exist_ok=True)
     meta_file = meta / "project.json"
-    if not meta_file.exists():
-        meta_file.write_text(
-            json.dumps({"bossku_version": "2.0.0", "profile": profile}, indent=2),
-            encoding="utf-8",
-        )
+    metadata = json.loads(meta_file.read_text(encoding="utf-8")) if meta_file.exists() else {}
+    metadata["bossku_version"] = __version__
+    metadata.setdefault("profile", profile)
+    meta_file.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     init_memory_templates(project)
     agents_path = project / "AGENTS.md"
     claude_path = project / "CLAUDE.md"
@@ -49,9 +49,9 @@ def init_project(
     omp_config_path = omp_dir / "config.yml"
     block = (
         "BosskuAI is active. Before multi-step work, match the task to an installed skill "
-        "(read skill descriptions and pack routing in the global Bossku-AI AGENTS.md). "
-        "Loop engineering is always on for fix/CI/PR/loop work (see global AGENTS.md). "
-        "Load one primary skill, then plan → execute → audit. "
+        "(use `bossku skills find` when unclear). Select one primary skill and the smallest "
+        "complementary set justified by distinct prompt concerns; multiple skills are valid. "
+        "Use Superpowers for process, Anti-Slop for output quality, and verify before completion. "
         "Save durable decisions with `bossku remember`."
     )
     if agents_path.exists():

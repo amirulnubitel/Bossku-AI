@@ -1,16 +1,6 @@
 ---
 name: bosskuai-taste
-description: >
-  Anti-slop frontend skill — ships interfaces that don't look AI-templated.
-  Reads the brief, infers a real design direction, reaches past LLM defaults
-  (AI-purple gradients, centered hero on dark mesh, three equal feature cards,
-  glassmorphism everywhere, Inter + slate-900), uses real design systems when
-  applicable, and runs a strict pre-flight before delivering. Use for landing
-  pages, portfolios, marketing sites, and redesigns — and load it by default
-  for any frontend/UI generation. Also enforces universal anti-slop content
-  rules (no Jane Doe / Acme, no filler verbs, no fake-perfect numbers).
-  Source: taste-skill (MIT, Leonxlnx / tasteskill.dev). Pair with
-  bosskuai-ui-ux-design-to-code, bosskuai-design-systems, bosskuai-ponytail.
+description: "Use when creating or redesigning landing pages, portfolios, or marketing UI that needs a distinctive design direction and must avoid generic AI aesthetics; pair with implementation, design-system, accessibility, mobile, or Anti-Slop skills only when the prompt needs them."
 ---
 
 # BosskuAI Taste — Anti-Slop Frontend

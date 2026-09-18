@@ -88,7 +88,7 @@ bossku install --profile full --vault "/path/to/Obsidian/Vault"
 
 `--profile core` installs co-founder essentials plus the **loop-engineering** pack (12 skills). Loop discipline is always on in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on). After pulling Bossku-AI changes, run `bossku update` so installed skills match the repo.
 
-Skills are copied to:
+Skills and their shared `references/` sidecars are copied to:
 
 - `~/.agents/skills/` - Cursor, Codex, OpenCode, and OMP (OpenCode and OMP also scan `~/.claude/skills/`)
 - `~/.claude/skills/` - Claude Code, OpenCode, and OMP
@@ -99,7 +99,7 @@ No symlinks. Unrelated skills in those folders are left untouched.
 
 After `bossku install` or `bossku update`, the JSON includes `tools` (per-tool skill paths) and `agents_count` / `claude_count` (must match). Run `bossku doctor` for a human-readable coverage summary; use `bossku doctor --project .` to verify instruction adapters in a repo.
 
-Coding agents pick skills from installed folders using each skill's `description` (especially **Use when…**) plus your project `AGENTS.md`. After pulling Bossku-AI changes, run `bossku update`. For CLI hints: `bossku skills find "<task>"`.
+Coding agents pick skills from installed folders using each skill's `description` plus your project `AGENTS.md`. After pulling Bossku-AI changes, run `bossku update`. `bossku skills find "<task>"` returns a primary match, a ranked list, and a `recommended_stack` of prompt-explicit complements; read the descriptions and remove overlaps before loading. Use `bossku skills audit` to measure context size and reference integrity.
 
 ## Tool compatibility
 
