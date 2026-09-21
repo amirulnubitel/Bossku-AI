@@ -18,6 +18,7 @@ description: Use this skill for in-depth investigation tasks — multi-source re
 - **`bosskuai-market-analysis`**: interprets findings strategically (positioning, TAM, whitespace). Deep research is the investigation engine that feeds it — pure sourced synthesis, not strategy.
 - **`bosskuai-competitor-intelligence`**: tracks competitors on a repeating cadence with comparison matrices. Deep research is a one-time deep-dive on any topic, not necessarily competitive.
 - **`bosskuai-search-first`**: a lightweight lookup skill for quick answers. Deep research involves multi-step queries, cross-referencing, and confidence-rated synthesis.
+- **`bosskuai-grounding`**: always-on discipline for any factual output (admit gaps, quote first, retract unsupported claims). Deep research is the multi-source engine that feeds that discipline.
 
 ## MCP requirements
 
@@ -34,7 +35,7 @@ description: Use this skill for in-depth investigation tasks — multi-source re
 
 3. **Execute multi-source search** — For each sub-question, run at least two independent searches via Exa. Vary query phrasing. Target primary sources (official docs, GitHub, SEC filings, analyst reports) and secondary sources (community forums, review sites, journalism). Log every URL used.
 
-4. **Deep-read 3–5 key sources** — Use Firecrawl (or WebFetch) to retrieve full content of the highest-signal pages. Do not rely on search snippets alone for claims you will assert.
+4. **Deep-read 3–5 key sources** — Use Firecrawl (or WebFetch) to retrieve full content of the highest-signal pages. Do not rely on search snippets alone for claims you will assert. Record verbatim quotes with URL for every fact you intend to assert; the synthesis uses only these quotes.
 
 5. **Cross-reference and verify** — For every material claim, check that at least two independent sources agree or that the primary source is authoritative (official docs, public filings). Flag contradictions explicitly.
 
@@ -73,7 +74,9 @@ Search queries used, tools used, date range.
 - Label confidence levels consistently; never inflate to HIGH without two independent sources.
 - Do not conflate summary snippets with full-source reading — deep-read before asserting specifics.
 - If Exa is unavailable, state reduced coverage at the top of the report.
+- After drafting, re-check each claim against a recorded quote. Remove claims with none and list them under Gaps and open questions.
 
 ## Further reading
 
 - `../../references/playbooks/deep-research-detailed-playbook.md` — extended step-by-step workflow and detailed templates that complement this playbook.
+- `../../references/checklists/grounding-checklist.md` — quote-first, claim/retract, and source-only checks.

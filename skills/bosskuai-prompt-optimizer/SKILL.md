@@ -107,9 +107,9 @@ guessing — `bosskuai-skill-stocktake` audits it.
 | New Feature | bosskuai-engineering-delivery, bosskuai-tdd-loop | planner, tdd-guide, code-reviewer |
 | Bug Fix | bosskuai-diagnose-loop, bosskuai-bug-finding | build-fixer, tdd-guide |
 | Refactor | bosskuai-code-revamp, bosskuai-architecture-deepening | refactor-cleaner, code-reviewer |
-| Research | bosskuai-search-first, bosskuai-documentation-lookup, bosskuai-deep-research | — |
+| Research | bosskuai-search-first, bosskuai-documentation-lookup, bosskuai-deep-research, bosskuai-grounding | — |
 | Testing | bosskuai-tdd-loop, bosskuai-integration-testing, bosskuai-qa-automation-strategy | tdd-guide, e2e-runner |
-| Review | bosskuai-rigorous-code-review, bosskuai-greptile-review-loop, bosskuai-pr-check | code-reviewer, security-reviewer, auditor |
+| Review | bosskuai-rigorous-code-review, bosskuai-greptile-review-loop, bosskuai-pr-check, bosskuai-grounding | code-reviewer, security-reviewer, auditor |
 | Documentation | bosskuai-claude-md-management (instruction files) | doc-updater |
 | Infrastructure | bosskuai-docker, bosskuai-devops-iac, bosskuai-vps-docker-deployment | — |
 | Design (MEDIUM-HIGH) | bosskuai-software-architecture | planner |
@@ -147,6 +147,7 @@ whether Phase 0 auto-detected it or the user must supply it:
 - [ ] **Database changes** — schema, migrations, indexes? (if data layer)
 - [ ] **Existing patterns** — reference files or conventions to follow?
 - [ ] **Scope boundaries** — what NOT to do?
+- [ ] **Source of truth** — which files, docs, or data must the answer be grounded in, and may the model use general knowledge?
 
 **If 3+ critical items are missing**, ask the user up to 3 clarification
 questions before generating the optimized prompt (this mirrors the
@@ -222,6 +223,7 @@ self-contained and ready to copy-paste. Include:
 - Acceptance criteria
 - Verification steps
 - Scope boundaries (what NOT to do)
+- Grounding: sources to quote from, and permission to say "not enough information"
 
 ### Section 4: Optimized Prompt — Quick Version
 
@@ -271,6 +273,7 @@ Requirements:
 - Auth: Sanctum token required; users can only update their own profile (policy)
 - 200 with updated user on success; 422 with validation errors; 401/403 for auth failures
 - Follow existing controller/resource patterns in app/app/Http/
+- Ground in: existing controllers under app/app/Http/ and the users migration; say so if a rule cannot be confirmed from them.
 
 Workflow:
 1. Plan the endpoint structure, policy, and validation rules (planner agent, reasoning model)

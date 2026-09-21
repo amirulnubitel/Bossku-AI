@@ -340,6 +340,12 @@ CURATED_TRIGGERS: dict[str, list[str]] = {
     "bosskuai-grill-with-docs": ["grill", "verify against docs", "check my understanding"],
     "bosskuai-engineering-principles": ["engineering principles", "why do we do it this way"],
     "bosskuai-ponytail": ["simplest thing", "yagni", "minimal code", "over-engineered"],
+    "bosskuai-grounding": [
+        "hallucination", "hallucinating", "don't make things up", "making things up",
+        "cite the source", "cite sources", "only use the provided documents",
+        "only from these documents", "verify every claim", "is this accurate",
+        "quote the source", "ground the answer", "fact check",
+    ],
     "bosskuai-human-output": ["sound human", "less robotic", "rewrite naturally"],
     "antislop": [
         "anti slop", "antislop", "remove ai slop", "generic ai output",

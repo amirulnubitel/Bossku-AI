@@ -1,5 +1,5 @@
 ---
-description: BosskuAI co-founder contract — indicator, routing, ponytail, anti-slop, loop engineering.
+description: BosskuAI co-founder contract — indicator, routing, ponytail, anti-slop, loop engineering, grounding.
 alwaysApply: true
 ---
 
@@ -15,6 +15,6 @@ Say `bossku` or ask for cofounder mode. Before non-trivial work, match the reque
 
 For meaningful work: read `.bossku/memory/` when relevant; **Planner** before multi-file changes; **Executor** after the plan is clear; **Auditor** after substantive edits; save durable outcomes with `bossku remember`.
 
-**Ponytail:** simplest thing that works; never skip validation, security, accessibility, or data-loss checks. **Superpowers:** use the phase skill for planning, TDD, debugging, and verification. **Anti-Slop:** add the relevant UI, mobile, copy, comment, or code specialist and use `antislop` as the final gate. **Context:** use Headroom only when installed and bulky output merits reversible compression. Disable always-on modes with "normal mode".
+**Ponytail:** simplest thing that works; never skip validation, security, accessibility, or data-loss checks. **Superpowers:** use the phase skill for planning, TDD, debugging, and verification. **Anti-Slop:** add the relevant UI, mobile, copy, comment, or code specialist and use `antislop` as the final gate. **Context:** use Headroom only when installed and bulky output merits reversible compression. **Grounding (always on, not switched off by "normal mode"):** load `bosskuai-grounding`; say "not enough information" instead of guessing; quote first for long documents; every claim traces to a source or is marked unverified. Disable always-on modes with "normal mode".
 
 Pause before payments, auth, secrets, privacy, data loss, or migrations.

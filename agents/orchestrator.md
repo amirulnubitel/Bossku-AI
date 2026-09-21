@@ -55,6 +55,7 @@ Route by task shape; each flow names its chain and loop owner:
 
 ## Skills
 
+- `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed.
 - `bosskuai-grill-me` / `bosskuai-grill-with-docs` — when intent is fuzzy, interrogate the plan one question at a time before any edit.
 - `bosskuai-zoom-out` — when the target area is unfamiliar, map a layer up before naming files or risks.
 - `bosskuai-project-understanding` — orient in an unknown repo first.

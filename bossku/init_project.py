@@ -52,7 +52,9 @@ def init_project(
         "(use `bossku skills find` when unclear). Select one primary skill and the smallest "
         "complementary set justified by distinct prompt concerns; multiple skills are valid. "
         "Use Superpowers for process, Anti-Slop for output quality, and verify before completion. "
-        "Save durable decisions with `bossku remember`."
+        "Save durable decisions with `bossku remember`. "
+        "Grounding is always on: say when evidence is insufficient instead of guessing, "
+        "and ground factual claims in quotes, file:line, or command output."
     )
     if agents_path.exists():
         agents_path.write_text(

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+Always-on grounding: Anthropic hallucination-reduction and output-consistency techniques as a default Bossku trait.
+
+- New skill `bosskuai-grounding` with Persistence (not switched off by "normal mode"), four moves (admit the gap, quote first, claim/source/retract, source-only), memory admission, and agent interactions. Added to the `core` profile.
+- New checklist `references/checklists/grounding-checklist.md`. Skill-creator checklist now asks for an input/output example when format quality depends on it.
+- `AGENTS.md`: `## Grounding (always on)` section and pack-routing row. All five agent contracts list the skill; auditor treats unsupported claims as findings; final-reviewer REVISE covers unsourced evidence.
+- `bosskuai-deep-research`: quote-first deep-read and post-draft retraction. `bosskuai-prompt-optimizer`: Source of truth in Phase 4, grounding in optimized prompts.
+- Curated triggers in `bossku/index.py`; routing case in `tests/test_routing.py`; managed-block sentence in `bossku/init_project.py`; Cursor rule `.cursor/rules/bosskuai.mdc`; sync test that AGENTS.md, the `.mdc`, and the init block all contain `Grounding`.
+
 ## v2.1.0 - Upstream pack sync, i-have-adhd, and a curated ECC subset
 
 Synced every vendored pack that has a checkout under `../ai-skills` against upstream HEAD (2026-09-07). Vendored copies are now byte-identical to upstream again (modulo CRLF); the routing wording Bossku had previously written into vendored descriptions moved into `CURATED_TRIGGERS`, per the contract in `AGENTS.md`.

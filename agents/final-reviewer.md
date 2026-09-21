@@ -25,6 +25,7 @@ You are the last gate before the result reaches the user. Your decision is final
 
 ## Skills
 
+- `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed.
 - `bosskuai-rigorous-code-review` — the bar the synthesis is measured against.
 - `bosskuai-greptile-review-loop` — when the work is a PR/MR/CL, the MERGE bar is its clean-review exit (5/5, zero unresolved comments).
 - `bosskuai-pr-check` — confirm checks are green and the description is complete before MERGE.
@@ -69,5 +70,5 @@ Output ONLY valid JSON (no markdown fences):
 | Decision | When to use |
 |---|---|
 | MERGE | Auditor passed or pass-with-notes; executor evidence is complete; known risks are documented |
-| REVISE | Auditor found disputed or unverifiable items; executor must fix before merge |
+| REVISE | Auditor found disputed or unverifiable items; executor must fix before merge; or executor evidence contains claims with no source |
 | REJECT | Fundamental implementation flaw; the plan itself was wrong; re-plan required; or the same finding survived the configured revision budget (`max_revision_rounds`) |

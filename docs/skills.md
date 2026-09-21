@@ -12,7 +12,7 @@ Canonical skills live in [`skills/`](../skills/). Each folder contains `SKILL.md
 
 ## Profiles
 
-`bossku install --profile core` installs Bossku co-founder essentials plus the **loop-engineering** pack (12 loop/triage/CI/PR skills). Always-on loop discipline is in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on).
+`bossku install --profile core` installs Bossku co-founder essentials plus the **loop-engineering** pack (12 loop/triage/CI/PR skills) and `bosskuai-grounding`. Always-on loop discipline is in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on); always-on grounding is in [`AGENTS.md`](../AGENTS.md#grounding-always-on).
 
 `bossku install --profile full` installs the entire library (~240 skills), including all other vendored packs.
 
@@ -64,6 +64,7 @@ Attribution: [`docs/third-party.md`](third-party.md). Optional deps: [`requireme
 | `bosskuai-tech-lead` | `architecture-decision-records` | Writing the ADR file itself |
 | `bosskuai-nuxt-development` | `vue-patterns` | Vue 3 / Pinia work outside Nuxt |
 | `bosskuai-taste`, `taste-skill`, `hallmark` | `antislop-ui`, `antislop-layoutmobile` | Use design skills to choose direction, then Anti-Slop specialists to audit the produced UI and responsive behavior |
+| `bosskuai-grounding` | `bosskuai-deep-research`, `odl-pdf` | Always-on grounding discipline; add deep-research for multi-source synthesis, odl-pdf for citation-ready PDF extraction |
 | `markitdown` | `odl-pdf` | OpenDataLoader-specific or structured PDF work: scanned OCR, tables, JSON, bounding boxes, or citation-ready RAG; keep `markitdown` for generic Office/PDF/HTML-to-Markdown conversion |
 | — | `python-patterns`, `python-testing` | Bossku has no Python skill of its own; these are the defaults |
 

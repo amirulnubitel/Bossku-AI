@@ -82,6 +82,7 @@ ROUTING_CASES = [
     ("extract tables from this PDF to JSON with opendataloader-pdf", {"odl-pdf"}),
     ("OCR this scanned PDF with ODL and verify the extracted text", {"odl-pdf"}),
     ("build a PDF RAG pipeline with page and bounding box citations", {"odl-pdf"}),
+    ("don't hallucinate, cite a source for every claim in this report", {"bosskuai-grounding", "bosskuai-deep-research"}),
 ]
 
 NEW_SKILL_ROUTING_CASES = ROUTING_CASES[-9:]

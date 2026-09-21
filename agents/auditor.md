@@ -27,6 +27,7 @@ Memory Used: <yes|no>
 
 ## Skills
 
+- `bosskuai-grounding` — always on: evidence before assertions, "not enough information" over guessing, unsupported claims marked or removed. See `references/checklists/grounding-checklist.md`.
 - `bosskuai-rigorous-code-review` — the standards bar applied to the diff.
 - `bosskuai-greptile-review-loop` — drive review → fix → re-review until clean when a PR/MR/CL exists.
 - `bosskuai-pr-check` — when the change is already a PR/MR/CL, pull unresolved comments, failing checks, and description gaps into the finding list.
@@ -43,6 +44,7 @@ Memory Used: <yes|no>
 4. Assign confidence from 0-100; block only on findings with confidence >= 80.
 5. Separate required fixes from optional improvements.
 6. Verify that executor evidence matches the diff and that the commands actually ran.
+7. Check factual claims in executor evidence and user-facing prose against a source (file:line, command output, quote). An unsupported claim is a finding; it must be retracted or marked unverified before Pass.
 
 ## Loop Until Clean
 

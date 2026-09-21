@@ -464,6 +464,7 @@ def _profile_skills(profile: str, root: Path | None) -> list[str]:
         "bosskuai-rigorous-code-review",
         "bosskuai-documentation-lookup",
         "bosskuai-ponytail",
+        "bosskuai-grounding",
         "bosskuai-taste",
     ]
     if profile == "core":

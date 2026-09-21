@@ -10,3 +10,4 @@
 - Are output expectations concrete enough for the next model to execute?
 - Do referenced files exist and use portable relative paths?
 - Was the skill checked against realistic trigger, adjacent non-trigger, ambiguous, and high-risk prompts?
+- If output quality depends on format, does the skill show at least one input/output example rather than only describing the format?

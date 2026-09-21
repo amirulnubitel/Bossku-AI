@@ -83,8 +83,14 @@ class InstallTests(unittest.TestCase):
                 count_managed_skills(agents, ROOT),
                 count_managed_skills(claude, ROOT),
             )
-            for sid in ("loop-triage", "minimal-fix", "ci-triage", "loop-verifier"):
-                self.assertTrue((agents / sid).is_dir(), msg=f"missing core loop skill {sid}")
+            for sid in (
+                "loop-triage",
+                "minimal-fix",
+                "ci-triage",
+                "loop-verifier",
+                "bosskuai-grounding",
+            ):
+                self.assertTrue((agents / sid).is_dir(), msg=f"missing core skill {sid}")
             removed = uninstall_user(root=ROOT, home=home)
             self.assertTrue(len(removed["removed_skills"]) >= 0)
 
@@ -169,6 +175,7 @@ class InitTests(unittest.TestCase):
             self.assertIn("bosskuai:start", text)
             self.assertIn("complementary", text)
             self.assertIn("Anti-Slop", text)
+            self.assertIn("insufficient", text)
             self.assertIn("verify", text)
             self.assertTrue((project / ".bossku" / "memory" / "project.md").is_file())
             metadata = json.loads((project / ".bossku" / "project.json").read_text(encoding="utf-8"))
@@ -179,6 +186,15 @@ class InitTests(unittest.TestCase):
             self.assertTrue(omp_imports_agents_md(omp_agents))
             omp_config = (project / ".omp" / "config.yml").read_text(encoding="utf-8")
             self.assertIn("approvalMode: write", omp_config)
+
+    def test_grounding_surfaces_stay_in_sync(self):
+        agents = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        cursor_rule = (ROOT / ".cursor" / "rules" / "bosskuai.mdc").read_text(encoding="utf-8")
+        init_src = (ROOT / "bossku" / "init_project.py").read_text(encoding="utf-8")
+        self.assertIn("Grounding", agents)
+        self.assertIn("Grounding", cursor_rule)
+        self.assertIn("Grounding", init_src)
+        self.assertTrue((ROOT / "skills" / "bosskuai-grounding" / "SKILL.md").is_file())
 
     def test_init_writes_claude_import_on_empty_project(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -57,6 +57,19 @@ Route CI → `ci-triage`; PRs → `pr-review-triage`; backlog sweeps → `loop-t
 
 When a repo has a `graft/` index, prefer one targeted `graft ask`, `grep`, `callers`, `skeleton`, or `map` call and then act. Load the `graft` skill for details. Without an index, use narrow standard searches. Use Headroom for reversible compression of bulky tool output only when installed; do not silently install it or change provider routing.
 
+## Grounding (always on)
+
+`bosskuai-grounding` is a default trait, loaded for every agent. "normal mode" does not switch it off. The only relaxation: the user explicitly asks for speculation or brainstorming, labelled `speculative`.
+
+- Say "I don't have enough information to confidently answer this" when evidence is missing; never fill gaps with plausible text.
+- Long-document tasks (roughly >20k tokens, or any contract, policy, report, or spec review): extract verbatim quotes first, numbered; base analysis only on those quotes; state "No relevant quotes found" when nothing applies.
+- Every factual claim in a deliverable traces to a source: `file:line`, URL, quote number, or command output. After drafting, re-check each claim; a claim with no support is removed or marked `unverified`.
+- When the user supplies documents, answer only from them unless they ask for general knowledge; label anything drawn from outside as `outside the provided sources`.
+- High-stakes factual conclusions (security, money, legal, architecture): get a second independent pass (`bosskuai-council` or `bosskuai-cross-model-escalation`) and treat disagreement as a signal to re-verify.
+- Memory admission: `bossku remember` only stores claims that were verified in-session; unverified findings go in the reply as `unverified`, not in `.bossku/memory/`.
+
+Checklist: [`references/checklists/grounding-checklist.md`](references/checklists/grounding-checklist.md).
+
 ## Risk pauses
 
 Ask before payments, auth, secrets, privacy, data loss, or migrations.
@@ -90,6 +103,7 @@ Vendored packs are reviewed on a 180-day window — run `bossku skills stocktake
 | Browser automation agent | `browser-use` (prefer over `bosskuai-browser-automation` when installed) |
 | Office/PDF/HTML → Markdown | `markitdown` (requires `markitdown[all]` pip package) |
 | Structured PDF extraction, scanned OCR, tables, bounding boxes, or citation-ready RAG | `odl-pdf` (OpenDataLoader runtime installed separately; use `markitdown` for generic conversion) |
+| Factual answers from documents, citations, accuracy or hallucination concerns | `bosskuai-grounding` (always on; + `bosskuai-deep-research` for multi-source synthesis, `odl-pdf` for citation-ready PDF extraction) |
 | Agent loops: CI/PR/issue sweeps, budgeted triage | loop-engineering — `loop-triage`, `loop-verifier`, `minimal-fix` (+ pattern skills: `ci-triage`, `pr-review-triage`, etc.) |
 | Scroll-scrub fly-through / diorama cinematic landing | `scroll-world` (Higgsfield + portable scrub engine; not generic GSAP-only heroes) |
 | Agent shell/git safety / destructive command hooks | `dcg` (Destructive Command Guard; install upstream binary separately) |
@@ -114,5 +128,5 @@ python -m unittest discover -s tests -v
 ```
 
 <!-- bosskuai:start -->
-BosskuAI is active. Before multi-step work, match the task to installed skills. Select one primary skill and the smallest complementary set justified by distinct prompt concerns; multiple skills are valid. Use Superpowers for process, Anti-Slop for output quality, and verify before completion. Save durable decisions with `bossku remember`.
+BosskuAI is active. Before multi-step work, match the task to an installed skill (use `bossku skills find` when unclear). Select one primary skill and the smallest complementary set justified by distinct prompt concerns; multiple skills are valid. Use Superpowers for process, Anti-Slop for output quality, and verify before completion. Save durable decisions with `bossku remember`. Grounding is always on: say when evidence is insufficient instead of guessing, and ground factual claims in quotes, file:line, or command output.
 <!-- bosskuai:end -->
