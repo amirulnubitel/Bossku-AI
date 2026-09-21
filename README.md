@@ -15,6 +15,10 @@ cd /path/to/your/project
 bossku init .
 ```
 
+`bossku install` refreshes denser Obsidian auto-sync hooks by default (curated one-way
+export only). Codex needs a one-time in-session `/hooks` trust approval. Details:
+[docs/memory.md](docs/memory.md).
+
 Open the project in any supported coding agent. Say `bossku` or ask for cofounder mode.
 
 ## Plugin / marketplace install

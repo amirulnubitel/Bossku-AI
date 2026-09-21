@@ -104,10 +104,10 @@ def format_doctor_success(
     status = hooks_status(h)
     installed = [tool for tool, on in status.items() if on]
     if installed:
-        lines.append(f"  session-end sync hooks: {', '.join(sorted(installed))}")
+        lines.append(f"  denser Obsidian auto-sync hooks: {', '.join(sorted(installed))}")
     else:
         lines.append(
-            "  session-end sync hooks: none installed; run `bossku hooks install` "
-            "for automatic Obsidian sync on session end"
+            "  denser Obsidian auto-sync hooks: none installed; run `bossku hooks install` "
+            "for denser Obsidian auto-sync (per-turn / session-end / after-response)"
         )
     return lines

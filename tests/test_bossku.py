@@ -12,6 +12,9 @@ import bossku
 from bossku.cli import _doctor, main
 from bossku.doctor import gather_doctor_issues
 from bossku.hooks import (
+    CLAUDE_EVENTS,
+    CODEX_EVENTS,
+    CURSOR_EVENTS,
     HOOK_MARKER,
     hooks_status,
     install_hooks,
@@ -342,6 +345,93 @@ class HooksTests(unittest.TestCase):
             init_project(project, root=ROOT)
             result = run_sync_hook(project=project, home=home)
             self.assertEqual(result["status"], "skipped")
+
+
+    def test_cursor_installs_denser_events(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".cursor").mkdir(parents=True)
+            result = install_hooks(home=home, tools=("cursor",))
+            self.assertEqual(result["cursor"]["status"], "installed")
+            data = json.loads((home / ".cursor" / "hooks.json").read_text(encoding="utf-8"))
+            for event in CURSOR_EVENTS:
+                self.assertIn(event, data["hooks"])
+                self.assertTrue(any(HOOK_MARKER in json.dumps(e) for e in data["hooks"][event]))
+            self.assertTrue(hooks_status(home)["cursor"])
+
+    def test_claude_installs_stop_and_session_end(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".claude").mkdir(parents=True)
+            result = install_hooks(home=home, tools=("claude_code",))
+            self.assertEqual(result["claude_code"]["status"], "installed")
+            data = json.loads((home / ".claude" / "settings.json").read_text(encoding="utf-8"))
+            for event in CLAUDE_EVENTS:
+                self.assertIn(event, data["hooks"])
+                self.assertTrue(any(HOOK_MARKER in json.dumps(e) for e in data["hooks"][event]))
+
+    def test_cursor_upgrade_adds_missing_denser_events(self):
+        """Legacy stop-only installs should gain sessionEnd + afterAgentResponse on reinstall."""
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            cursor = home / ".cursor"
+            cursor.mkdir(parents=True)
+            legacy = {
+                "version": 1,
+                "hooks": {
+                    "stop": [{"command": f"bossku sync-hook # {HOOK_MARKER}"}],
+                },
+            }
+            (cursor / "hooks.json").write_text(json.dumps(legacy, indent=2), encoding="utf-8")
+            result = install_hooks(home=home, tools=("cursor",))
+            self.assertEqual(result["cursor"]["status"], "installed")
+            data = json.loads((cursor / "hooks.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(data["hooks"]["stop"]), 1)  # not duplicated
+            for event in CURSOR_EVENTS:
+                self.assertIn(event, data["hooks"])
+                self.assertTrue(any(HOOK_MARKER in json.dumps(e) for e in data["hooks"][event]))
+
+    def test_codex_wrapper_and_features_hooks(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            codex = home / ".codex"
+            codex.mkdir(parents=True)
+            (codex / "config.toml").write_text("[model]" + chr(10) + 'name = "gpt"' + chr(10), encoding="utf-8")
+            result = install_hooks(home=home, tools=("codex",))
+            self.assertEqual(result["codex"]["status"], "installed")
+            data = json.loads((codex / "hooks.json").read_text(encoding="utf-8"))
+            for event in CODEX_EVENTS:
+                self.assertIn(event, data["hooks"])
+                dumped = json.dumps(data["hooks"][event])
+                self.assertIn(HOOK_MARKER, dumped)
+                self.assertIn("codex-sync-hook", dumped)
+            cfg = (codex / "config.toml").read_text(encoding="utf-8")
+            self.assertIn("hooks = true", cfg)
+            self.assertIn('name = "gpt"', cfg)
+            wrapper = Path(result["codex"]["wrapper"])
+            self.assertTrue(wrapper.is_file())
+            out = __import__("subprocess").check_output(["bash", str(wrapper)], stdin=__import__("subprocess").DEVNULL, text=True)
+            self.assertIn('"continue"', out)
+
+            data["hooks"]["Stop"].insert(0, {"hooks": [{"type": "command", "command": "echo keep-me"}]})
+            (codex / "hooks.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
+            un = uninstall_hooks(home=home, tools=("codex",))
+            self.assertEqual(un["codex"]["status"], "removed")
+            after = json.loads((codex / "hooks.json").read_text(encoding="utf-8"))
+            self.assertIn("echo keep-me", json.dumps(after["hooks"].get("Stop", [])))
+            self.assertNotIn(HOOK_MARKER, json.dumps(after.get("hooks", {})))
+            self.assertFalse(wrapper.exists())
+
+    def test_install_user_refreshes_hooks_by_default(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            (home / ".cursor").mkdir(parents=True)
+            result = install_user(root=ROOT, home=home, profile="core")
+            self.assertIn("hooks", result)
+            self.assertEqual(result["hooks"]["cursor"]["status"], "installed")
+            data = json.loads((home / ".cursor" / "hooks.json").read_text(encoding="utf-8"))
+            for event in CURSOR_EVENTS:
+                self.assertIn(event, data["hooks"])
 
 
 class SkillTests(unittest.TestCase):

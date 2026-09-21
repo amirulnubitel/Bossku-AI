@@ -28,24 +28,34 @@ If the vault is offline, local memory still saves; run `bossku sync` later.
 
 If a vault file was edited manually after export, BosskuAI writes a `*.conflict.md` copy instead of overwriting.
 
-## Session-end sync hooks (optional)
+## Denser Obsidian auto-sync hooks (default)
 
-`bossku remember` already exports on every call. `bossku hooks install` additionally wires
-a session-end hook into Claude Code, Cursor, Codex, and OpenCode so `bossku sync` reruns
-automatically when a session ends — a safety net, not a new write path. It only touches
-tools that are already configured on the machine and only adds to existing hook config,
-never replaces it.
+`bossku remember` already exports on every call (curated Markdown only — never raw
+prompts or transcripts). `bossku install` (and `bossku hooks install`) wires **denser**
+auto-sync hooks so `bossku sync-hook` also reruns after agent turns / session ends:
+
+| Tool | Events |
+|---|---|
+| Cursor | `stop`, `sessionEnd`, `afterAgentResponse` |
+| Claude Code | `Stop`, `SessionEnd` |
+| Codex | `Stop`, `SessionEnd` via a continue-safe wrapper (`~/.bosskuai/codex-sync-hook.sh or .ps1`) |
+| OpenCode | `session.idle` plugin (unchanged) |
+
+This is still a safety net on the same curated one-way export path (repo → vault), not a
+new write model. Install is additive and idempotent (`HOOK_MARKER = sync-hook`): only
+BosskuAI entries are added or removed; unrelated hooks are preserved. Codex also gets
+`[features] hooks = true` in `~/.codex/config.toml` without wiping other config.
 
 ```bash
-bossku hooks install               # all installed tools
-bossku hooks install --tools codex # one tool: claude_code, cursor, codex, opencode
-bossku hooks uninstall             # remove only BosskuAI's own entries
+bossku install --vault "/path/to/Obsidian/Vault"   # refreshes denser hooks by default
+bossku hooks install                               # all detected tools
+bossku hooks install --tools codex                 # one tool: claude_code, cursor, codex, opencode
+bossku hooks uninstall                             # remove only BosskuAI-marked entries
 ```
 
-Codex requires a one-time interactive approval before it will run any hook (its own
-trust gate) — the hook is written immediately, but only fires after the user approves it
-during one normal Codex session. `bossku doctor` reports which tools currently have the
-hook installed.
+**Codex trust step:** after install, run Codex once and approve hooks when prompted
+(`/hooks` trust gate). Hooks are written immediately but only fire after that one-time
+approval. `bossku doctor` reports which tools currently have denser hooks installed.
 
 ## Privacy
 

@@ -62,13 +62,13 @@ def main(argv: list[str] | None = None) -> int:
 
     p_sync_hook = sub.add_parser(
         "sync-hook",
-        help="Internal: run from a tool session-end hook; reads project cwd from stdin JSON",
+        help="Internal: run from agent auto-sync hooks; reads project cwd from stdin JSON",
         parents=[parent],
     )
     p_sync_hook.add_argument("--project", type=Path, default=None)
 
     p_hooks = sub.add_parser(
-        "hooks", help="Manage session-end sync hooks (Claude Code, Cursor, Codex, OpenCode)", parents=[parent]
+        "hooks", help="Manage denser Obsidian auto-sync hooks (Claude Code, Cursor, Codex, OpenCode)", parents=[parent]
     )
     p_hooks_sub = p_hooks.add_subparsers(dest="hooks_cmd", required=True)
     p_hooks_install = p_hooks_sub.add_parser("install", parents=[parent])

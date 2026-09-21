@@ -10,6 +10,7 @@ from bossku.paths import (
     repo_root,
     user_config_dir,
 )
+from bossku.hooks import install_hooks
 from bossku.skills import (
     copy_skills_to,
     is_managed_skill_name,
@@ -90,6 +91,8 @@ def install_user(
         cfg["obsidian_vault"] = vault
     cfg_path.parent.mkdir(parents=True, exist_ok=True)
     cfg_path.write_text(json.dumps(cfg, indent=2), encoding="utf-8")
+    # Default denser Obsidian auto-sync hooks (clone → pip install -e . → bossku install).
+    hooks_result = install_hooks(home=h)
     return {
         "agents_skills": str(agents_dest),
         "claude_skills": str(claude_dest),
@@ -100,6 +103,7 @@ def install_user(
         "claude_reference_count": len(installed_claude_references),
         "tools": tools_coverage_map(agents_dest, claude_dest),
         "routing_cache": str(cache_path),
+        "hooks": hooks_result,
     }
 
 

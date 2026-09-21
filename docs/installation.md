@@ -88,6 +88,13 @@ bossku install --profile full --vault "/path/to/Obsidian/Vault"
 
 `--profile core` installs co-founder essentials plus the **loop-engineering** pack (12 skills). Loop discipline is always on in [`AGENTS.md`](../AGENTS.md#loop-engineering-always-on). After pulling Bossku-AI changes, run `bossku update` so installed skills match the repo.
 
+`bossku install` also refreshes **denser Obsidian auto-sync hooks** by default (Cursor
+`stop`/`sessionEnd`/`afterAgentResponse`, Claude Code `Stop`/`SessionEnd`, Codex
+`Stop`/`SessionEnd` via a continue-safe wrapper, OpenCode `session.idle`). Export stays
+curated and one-way. See [memory.md](memory.md#denser-obsidian-auto-sync-hooks-default).
+Re-run `bossku hooks install` anytime; uninstall with `bossku hooks uninstall`. Codex
+needs a one-time `/hooks` trust approval in-session before hooks fire.
+
 Skills and their shared `references/` sidecars are copied to:
 
 - `~/.agents/skills/` - Cursor, Codex, OpenCode, and OMP (OpenCode and OMP also scan `~/.claude/skills/`)
