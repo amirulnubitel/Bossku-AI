@@ -410,7 +410,21 @@ class HooksTests(unittest.TestCase):
             self.assertIn('name = "gpt"', cfg)
             wrapper = Path(result["codex"]["wrapper"])
             self.assertTrue(wrapper.is_file())
-            out = __import__("subprocess").check_output(["bash", str(wrapper)], stdin=__import__("subprocess").DEVNULL, text=True)
+            import shutil
+            import subprocess
+            if wrapper.suffix.lower() == ".ps1":
+                cmd = [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(wrapper),
+                ]
+            else:
+                bash = shutil.which("bash") or "bash"
+                cmd = [bash, str(wrapper)]
+            out = subprocess.check_output(cmd, stdin=subprocess.DEVNULL, text=True)
             self.assertIn('"continue"', out)
 
             data["hooks"]["Stop"].insert(0, {"hooks": [{"type": "command", "command": "echo keep-me"}]})
